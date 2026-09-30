@@ -4,6 +4,19 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <h3>Soy la Lista de Articulos</h3>
+    <h3>Lista de Articulos</h3>
+
+    <div class="mb-3">
+        <asp:GridView ID="dgvArticulos" CssClass="table" AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged" OnPageIndexChanging="dgvArticulos_PageIndexChanging" AllowPaging="true" PageSize="5" runat="server">
+
+            <Columns>
+                <asp:BoundField HeaderText="Codigo" DataField="Codigo" />
+                <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+                <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
+                <%--<asp:BoundField HeaderText="Marca" DataField="IdMarca" />--%>
+                <asp:BoundField HeaderText="Precio" DataField="Precio" />
+             </Columns>
+        </asp:GridView>
+    </div>
 
 </asp:Content>
