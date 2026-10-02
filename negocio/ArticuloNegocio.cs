@@ -23,7 +23,7 @@ namespace negocio
 
             try
             {
-                conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_DB; integrated security=true";
+                conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_WEB_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
                 comando.CommandText = "select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion MarcaBD, C.Descripcion CategoriaBD, A.IdMarca , A.IdCategoria , A.ImagenUrl, A.Precio from ARTICULOS A, CATEGORIAS C, MARCAS M where A.IdMarca = M.Id AND A.IdCategoria = C.Id\r\n";
                 comando.Connection = conexion;
@@ -61,6 +61,46 @@ namespace negocio
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+        }
+
+        public List<Articulo> listarConSP()
+        {
+            List<Articulo> lista = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("storedListar");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Codigo = (string)datos.Lector["Codigo"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+
+                    aux.MarcaTipo = new Marca();
+                    aux.MarcaTipo.Id = (int)datos.Lector["IdMarca"];
+                    aux.MarcaTipo.Descripcion = (string)datos.Lector["Marca"];
+                    aux.CategoriaTipo = new Categoria();
+                    aux.CategoriaTipo.Id = (int)datos.Lector["IdCategoria"];
+                    aux.CategoriaTipo.Descripcion = (string)datos.Lector["Categoria"];
+
+                    if (!(datos.Lector["ImagenUrl"] is DBNull))
+                        aux.ImagenUrl = (string)datos.Lector["ImagenUrl"];
+                    aux.Precio = (decimal)datos.Lector["Precio"];
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
                 throw ex;
             }
         }

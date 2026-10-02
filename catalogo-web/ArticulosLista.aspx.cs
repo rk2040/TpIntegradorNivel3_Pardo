@@ -15,7 +15,8 @@ namespace catalogo_web
             if (!IsPostBack)
             {
                 ArticuloNegocio negocio = new ArticuloNegocio();
-                Session.Add("listaArticulos", negocio.listar());
+                //Session.Add("listaArticulos", negocio.listar());
+                Session.Add("listaArticulos", negocio.listarConSP());
                 dgvArticulos.DataSource = Session["listaArticulos"];
                 dgvArticulos.DataBind();
             }
