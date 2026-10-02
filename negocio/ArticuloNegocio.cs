@@ -14,7 +14,7 @@ namespace negocio
     {
         private AccesoDatos datos = new AccesoDatos();
 
-        public List<Articulo> listar()
+        public List<Articulo> listar(string id = "") // "" para que sea un parametro opcional
         {
             List<Articulo> lista = new List<Articulo>();
             SqlConnection conexion = new SqlConnection();
@@ -25,9 +25,11 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_WEB_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion MarcaBD, C.Descripcion CategoriaBD, A.IdMarca , A.IdCategoria , A.ImagenUrl, A.Precio from ARTICULOS A, CATEGORIAS C, MARCAS M where A.IdMarca = M.Id AND A.IdCategoria = C.Id\r\n";
-                comando.Connection = conexion;
+                comando.CommandText = "select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion MarcaBD, C.Descripcion CategoriaBD, A.IdMarca , A.IdCategoria , A.ImagenUrl, A.Precio from ARTICULOS A, CATEGORIAS C, MARCAS M where A.IdMarca = M.Id AND A.IdCategoria = C.Id \r\n";
 
+                if (id != "")
+                    comando.CommandText += "And A.Id =" + id;
+                comando.Connection = conexion;
                 conexion.Open();
                 lector = comando.ExecuteReader();
 
