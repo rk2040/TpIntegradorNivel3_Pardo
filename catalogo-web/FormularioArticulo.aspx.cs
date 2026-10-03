@@ -81,17 +81,69 @@ namespace catalogo_web
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Articulo nuevo = new Articulo();
+                ArticuloNegocio negocio = new ArticuloNegocio();
 
+                nuevo.Codigo = txtCodigo.Text;
+                nuevo.Nombre = txtNombre.Text;
+                nuevo.Descripcion = txtDescripcion.Text;
+
+                nuevo.MarcaTipo = new Marca();
+                nuevo.MarcaTipo.Id = int.Parse(ddlMarca.SelectedValue);
+
+                nuevo.CategoriaTipo = new Categoria();
+                nuevo.CategoriaTipo.Id = int.Parse(ddlCategoria.SelectedValue);
+
+                nuevo.ImagenUrl = txtUrlImagen.Text;
+                nuevo.Precio = decimal.Parse(txtPrecio.Text);
+
+                if (Request.QueryString["id"] != null) // Si trae un id, es porque tiene un Art para modificar.
+                {
+                    nuevo.Id = int.Parse(txtId.Text); // podria ser tambien: int.Parse(Request.QueryString["id"]);
+                    negocio.modificar(nuevo); //hacer el modificarConSP
+                }
+                else // Si no trae ningun id, es que es un Art nuevo.
+                    negocio.agregarConSP(nuevo);
+
+                Response.Redirect("ArticulosLista.aspx", false);
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
+            }
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
+            ConfirmaEliminacion = true;
+        }
 
+        protected void btnConfirmaEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkConfirmaEliminacion.Checked) // Entra si el check esta tildado
+                {
+                    ArticuloNegocio negocio = new ArticuloNegocio();
+                    negocio.eliminar(int.Parse(txtId.Text));
+                    Response.Redirect("ArticulosLista.aspx");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("Error", ex.ToString());
+            }
         }
 
         protected void txtUrlImagen_TextChanged(object sender, EventArgs e)
         {
             imgArticulo.ImageUrl = txtUrlImagen.Text;
         }
+
     }
 }

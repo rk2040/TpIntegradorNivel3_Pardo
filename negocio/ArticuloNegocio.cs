@@ -107,11 +107,11 @@ namespace negocio
             }
         }
 
-        public void agregar(Articulo nuevo)
+        public void agregarConSP(Articulo nuevo)
         {
             try
             {
-                datos.setearConsulta("insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio) values (@codigo, @nombre, @descripcion, @idMarca, @idCategoria, @imagenUrl, @precio) ");
+                datos.setearProcedimiento("storedAltaArticulo");
                 datos.setearParametros("@codigo", nuevo.Codigo);
                 datos.setearParametros("@nombre", nuevo.Nombre);
                 datos.setearParametros("@descripcion", nuevo.Descripcion);
