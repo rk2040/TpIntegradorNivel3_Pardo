@@ -1,6 +1,26 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="FormularioArticulo.aspx.cs" Inherits="catalogo_web.FormularioArticulo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .validator {
+            color: red;
+            font-size: 15px;
+        }
+    </style>
+    <%--<script>
+    function validar(){ 
+        //Captura el control
+        const txtApellido = document.getElementById("txtPrecio");
+        if (txtPrecio.value == "")
+        {
+            txtPrecio.classList.add("is-invalid");                
+            return false;
+        }
+        return true;
+        txtPrecio.classList.remove("is-invalid");
+    }
+
+    </script>--%>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -23,6 +43,11 @@
             <div class="mb-3">
                 <label for="txtNombre" class="form-label">Nombre</label>
                 <asp:TextBox ID="txtNombre" CssClass="form-control" runat="server" />
+                <asp:RequiredFieldValidator CssClass="validator"
+                    ControlToValidate="txtNombre"
+                    ErrorMessage="Debe ingresar un nombre."
+                    ValidationGroup="articuloGroup"
+                    runat="server" />
             </div>
             <div class="mb-3">
                 <label for="txtDescripcion" class="form-label">Descripcion</label>
@@ -39,22 +64,39 @@
             <div class="mb-3">
                 <label for="txtPrecio" class="form-label">Precio</label>
                 <asp:TextBox ID="txtPrecio" CssClass="form-control" runat="server" />
+                <asp:RegularExpressionValidator CssClass="validator"
+                    ControlToValidate="txtPrecio"
+                    ErrorMessage="Solo números positivos."
+                    ValidationExpression="^[0-9]+([.,][0-9]{1,4})?$"
+                    ValidationGroup="articuloGroup"
+                    runat="server" />
+                <asp:RequiredFieldValidator CssClass="validator"
+                    ControlToValidate="txtPrecio"
+                    ErrorMessage="Debe ingresar un precio."
+                    ValidationGroup="articuloGroup"
+                    runat="server" />
             </div>
 
             <div class="mb-3">
-                <asp:Button ID="btnAceptar" Text="Aceptar" CssClass="btn btn-primary" OnClick="btnAceptar_Click" runat="server" />
+                <asp:Button ID="btnAceptar" Text="Aceptar" CssClass="btn btn-primary" 
+                    OnClick="btnAceptar_Click" runat="server"
+                    ValidationGroup="articuloGroup"/>
                 <asp:HyperLink NavigateUrl="ArticulosLista.aspx" Text="Cancelar" CssClass="btn btn-secondary" runat="server" />
-                <asp:Button ID="btnEliminar" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" runat="server" />
+                <asp:Button ID="btnEliminar" Text="Eliminar" CssClass="btn btn-danger" 
+                    OnClick="btnEliminar_Click" runat="server" />
+
                 <%-- Aca poner panel control para confirmar eliminar --%>
-                <asp:UpdatePanel ID="upConfirmaEliminacion" runat="server">
-                    <ContentTemplate>
-                        <%if(ConfirmaEliminacion)
-                          {%>
+                <div class="mb-3">
+                    <asp:UpdatePanel ID="upConfirmaEliminacion" runat="server">
+                        <ContentTemplate>
+                            <%if (ConfirmaEliminacion)
+                                {%>
                             <asp:CheckBox ID="chkConfirmaEliminacion" Text=" Confirmar Eliminación " runat="server" />
                             <asp:Button ID="btnConfirmaEliminar" Text="Eliminar" CssClass="btn btn-outline-danger" OnClick="btnConfirmaEliminar_Click" runat="server" />
-                        <%}%>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
+                            <%}%>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
             </div>
         </div>
 

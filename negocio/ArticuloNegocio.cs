@@ -156,6 +156,32 @@ namespace negocio
             }
         }
 
+        public void modificarConSP(Articulo nuevo)
+        {
+            try
+            {
+                datos.setearProcedimiento("storedModificarArticulo");
+                //datos.setearConsulta("Update ARTICULOS set Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, IdMarca = @idMarca, IdCategoria = @idCategoria, ImagenUrl = @imagenUrl, Precio = @precio where id = @id");
+                datos.setearParametros("@id", nuevo.Id);
+                datos.setearParametros("@codigo", nuevo.Codigo);
+                datos.setearParametros("@nombre", nuevo.Nombre);
+                datos.setearParametros("@descripcion", nuevo.Descripcion);
+                datos.setearParametros("@idMarca", nuevo.MarcaTipo.Id);
+                datos.setearParametros("@idCategoria", nuevo.CategoriaTipo.Id);
+                datos.setearParametros("@imagenUrl", nuevo.ImagenUrl);
+                datos.setearParametros("@precio", nuevo.Precio);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexio();
+            }
+        }
+
         public void eliminar(int id)
         {
             try

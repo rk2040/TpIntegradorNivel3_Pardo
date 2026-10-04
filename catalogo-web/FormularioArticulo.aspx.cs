@@ -17,6 +17,7 @@ namespace catalogo_web
         {
             txtId.Enabled = false;
             ConfirmaEliminacion = false;
+            btnEliminar.Enabled = false;
 
             try
             {
@@ -47,6 +48,7 @@ namespace catalogo_web
                 // Si trae un id de la lista, cargamos los datos del producto de ese id, para ver y/o modificar
                 if( id != string.Empty && !IsPostBack)
                 {
+                    btnEliminar.Enabled = true;
                     ArticuloNegocio negocio = new ArticuloNegocio();
                     List<Articulo> lista = negocio.listar(id);
                     Articulo seleccionado = lista[0]; // devuelve una lista con un unico elemento, el del id
@@ -83,6 +85,10 @@ namespace catalogo_web
         {
             try
             {
+                //Page.Validate();
+                //if (!Page.IsValid)
+                //    return;
+
                 Articulo nuevo = new Articulo();
                 ArticuloNegocio negocio = new ArticuloNegocio();
 
@@ -102,7 +108,7 @@ namespace catalogo_web
                 if (Request.QueryString["id"] != null) // Si trae un id, es porque tiene un Art para modificar.
                 {
                     nuevo.Id = int.Parse(txtId.Text); // podria ser tambien: int.Parse(Request.QueryString["id"]);
-                    negocio.modificar(nuevo); //hacer el modificarConSP
+                    negocio.modificarConSP(nuevo); //hacer el modificarConSP
                 }
                 else // Si no trae ningun id, es que es un Art nuevo.
                     negocio.agregarConSP(nuevo);
