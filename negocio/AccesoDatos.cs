@@ -65,21 +65,21 @@ namespace negocio
             }
         }
 
-        //public int ejecutarAccionScalar()
-        //{
-        //    comando.Connection = conexion;
-        //    try
-        //    {
-        //        conexion.Open();
-        //        return int.Parse(comando.ExecuteScalar().ToString());
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //    finally 
-        //    { conexion.Close(); }
-        //}
+        public int ejecutarAccionScalar()
+        {
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+                return int.Parse(comando.ExecuteScalar().ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            { conexion.Close(); }
+        }
 
         public void setearParametros(string nombre, object valor)
         {

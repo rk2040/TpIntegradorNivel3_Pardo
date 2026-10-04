@@ -1,4 +1,6 @@
-﻿using System;
+﻿using dominio;
+using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +14,35 @@ namespace catalogo_web
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnIngresar_Click(object sender, EventArgs e)
+        {
+            Usuario usuario = new Usuario();
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            try
+            {
+                // Valida textos vacion
+
+                usuario.Email = txtEmail.Text;
+                usuario.Pass = txtPassword.Text;
+
+                if (negocio.Login(usuario))
+                {
+                    Session.Add("usuario", usuario);
+                    Response.Redirect("MiPerfil.aspx", false);
+                }
+                else
+                {
+                    Session.Add("Error", "Email o Password incorrectos");
+                    Response.Redirect("Error.aspx", false);
+                }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
+            }
         }
     }
 }
