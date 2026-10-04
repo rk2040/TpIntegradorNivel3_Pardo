@@ -15,7 +15,7 @@
         </div>
         <div class="col-6" style="display:flex; flex-direction: column; justify-content:flex-end">
             <div class="mb-3">
-                <asp:CheckBox id="chkAvanzado" Text="Busqueda Avanzada" AutoPostBack="true" OnCheckedChanged="Unnamed_CheckedChanged" CssClass="" runat="server" />
+                <asp:CheckBox id="chkAvanzado" Text="Busqueda Avanzada" AutoPostBack="true" OnCheckedChanged="chkAvanzado_CheckedChanged" CssClass="" runat="server" />
             </div>
         </div>
 
@@ -45,6 +45,13 @@
                     <asp:Label Text="Buscar" runat="server" />
                     <asp:TextBox ID="txtFiltroAvanzado" CssClass="form-control" runat="server" />
                 </div-mb-3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col 3">
+                <div class="mb-3">
+                    <asp:Button ID="btnBuscar" Text="Buscar" CssClass="btn btn-primary" OnClick="btnBuscar_Click" runat="server" />
+                </div>
             </div>
         </div>
           <%} %>

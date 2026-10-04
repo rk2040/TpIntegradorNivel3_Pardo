@@ -240,23 +240,6 @@ namespace negocio
                                 break;
                         }
                         break;
-
-                    case "Descripcion":
-                        switch (criterio)
-                        {
-                            case "Empieza con":
-                                consulta += "A.Descripcion like '" + filtro + "%'";
-                                break;
-                            case "Termina con":
-                                consulta += "A.Descripcion like '%" + filtro + "'";
-                                break;
-                            case "Contiene":
-                                consulta += "A.Descripcion like '%" + filtro + "%'";
-                                break;
-                            default:
-                                break;
-                        }
-                        break;
                     
                     case "Marca":
                         switch (criterio)

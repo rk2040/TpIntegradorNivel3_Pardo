@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using negocio;
+using dominio;
 
 namespace catalogo_web
 {
@@ -13,14 +14,14 @@ namespace catalogo_web
         public bool FiltroAvanzado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                ArticuloNegocio negocio = new ArticuloNegocio();
-                //Session.Add("listaArticulos", negocio.listar());
-                Session.Add("listaArticulos", negocio.listarConSP());
-                dgvArticulos.DataSource = Session["listaArticulos"];
-                dgvArticulos.DataBind();
-            }
+            //if (!IsPostBack)
+            //{
+            //    ArticuloNegocio negocio = new ArticuloNegocio();
+            //    //Session.Add("listaArticulos", negocio.listar());
+            //    Session.Add("listaArticulos", negocio.listarConSP());
+            //    dgvArticulos.DataSource = Session["listaArticulos"];
+            //    dgvArticulos.DataBind();
+            //}
 
             FiltroAvanzado = chkAvanzado.Checked;
             if (!IsPostBack)
@@ -47,17 +48,52 @@ namespace catalogo_web
 
         protected void txtFiltro_TextChanged(object sender, EventArgs e)
         {
+            List<Articulo> lista = (List<Articulo>)Session["listaArticulos"];
 
+            List<Articulo> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+
+            dgvArticulos.DataSource= listaFiltrada;
+            dgvArticulos.DataBind();
         }
 
-        protected void Unnamed_CheckedChanged(object sender, EventArgs e)
+        protected void chkAvanzado_CheckedChanged(object sender, EventArgs e)
         {
-
+            FiltroAvanzado = chkAvanzado.Checked;
+            txtFiltro.Enabled = !FiltroAvanzado;
         }
 
         protected void ddlCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Cargo los ddl de criterio segun lo que seleccione en el ddl campo
+            ddlCriterio.Items.Clear();
+            if(ddlCampo.SelectedItem.ToString() == "Precio")
+            {
+                ddlCriterio.Items.Add("Igual a");
+                ddlCriterio.Items.Add("Menor a");
+                ddlCriterio.Items.Add("Mayor a");
+            }
+            else
+            {
+                ddlCriterio.Items.Add("Contiene");
+                ddlCriterio.Items.Add("Empieza con");
+                ddlCriterio.Items.Add("Termina con");
+            }
+        }
 
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                dgvArticulos.DataSource = negocio.filtrar(ddlCampo.SelectedItem.ToString(), ddlCriterio.SelectedItem.ToString(), txtFiltroAvanzado.Text);
+
+                dgvArticulos.DataBind();
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("Error", ex);
+            }
         }
     }
 }
