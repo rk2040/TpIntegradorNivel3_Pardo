@@ -20,6 +20,7 @@ namespace negocio
                 datos.setearParametros("@nombre", nuevo.Nombre);
                 datos.setearParametros("@apellido", nuevo.Apellido);
                 datos.setearParametros("@imagenPerfil", nuevo.ImagenPerfil);
+                //datos.setearParametros("@admin", nuevo.Admin);
 
                 return datos.ejecutarAccionScalar();
             }

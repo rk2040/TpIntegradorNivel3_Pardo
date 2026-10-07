@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="catalogo-web/catalogo-web.csproj" Id="489a5c84-66c0-45b7-be79-cdba28058cd4" />
   <Project Path="dominio/dominio.csproj" Id="1ebb8a4d-b08f-42a8-bdc6-56757295950f" />
+  <Project Path="helpers/helpers.csproj" Id="0adc9ef1-4be6-4fd5-9206-f0dd8bcd1a11" />
   <Project Path="negocio/negocio.csproj" Id="caedf49e-dc3c-4572-8943-a0fca1415f22" />
 </Solution>

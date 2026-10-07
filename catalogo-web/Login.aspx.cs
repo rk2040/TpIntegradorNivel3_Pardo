@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using helpers;
 
 namespace catalogo_web
 {
@@ -23,7 +24,11 @@ namespace catalogo_web
             try
             {
                 // Valida textos vacion
-
+                if(Validacion.validarTextoVacio(txtEmail) || Validacion.validarTextoVacio(txtPassword))
+                {
+                    Session.Add("Error", "Debes completar ambos campos.");
+                    Response.Redirect("Error.aspx");
+                }
                 usuario.Email = txtEmail.Text;
                 usuario.Pass = txtPassword.Text;
 
