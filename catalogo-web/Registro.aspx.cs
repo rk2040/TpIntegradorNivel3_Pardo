@@ -28,7 +28,7 @@ namespace catalogo_web
                 usuario.Pass = txtPassword.Text;
                 usuario.Nombre = txtNombre.Text;
                 usuario.Apellido = txtApellido.Text;
-                usuario.ImagenPerfil = txtUrlImagen.Text;
+                //usuario.ImagenPerfil = txtUrlImagen.Text;
 
                 usuario.Id = usuarioNegocio.agregarUsuario(usuario); 
 

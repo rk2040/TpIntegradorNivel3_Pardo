@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,6 +63,29 @@ namespace negocio
                     return true;
                 }
                 return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexio();
+            }
+        }
+
+        public void actualizar(Usuario usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("Update USERS set Nombre = @nombre, Apellido = @apellido, urlImagenPerfil = @imagen Where Id = @id");
+                datos.setearParametros("@id", usuario.Id);
+                datos.setearParametros("@nombre", usuario.Nombre);
+                datos.setearParametros("@apellido", usuario.Apellido);
+                datos.setearParametros("@imagen", (object)usuario.ImagenPerfil ?? DBNull.Value);
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {

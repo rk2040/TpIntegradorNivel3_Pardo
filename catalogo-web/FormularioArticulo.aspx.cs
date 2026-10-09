@@ -15,6 +15,14 @@ namespace catalogo_web
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Seguridad.esAdmin(Session["usuario"]))
+            {
+                Session.Add("Error", "Necesita permisos de Admin para acceder a esta sección.");
+                Response.Redirect("Error.aspx");
+                return;
+            }
+
+
             txtId.Enabled = false;
             ConfirmaEliminacion = false;
             btnEliminar.Enabled = false;

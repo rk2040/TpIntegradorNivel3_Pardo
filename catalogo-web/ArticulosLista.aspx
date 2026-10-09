@@ -58,7 +58,7 @@
     </div>
 
     <div class="mb-3">
-        <asp:GridView ID="dgvArticulos" CssClass="table" AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged" OnPageIndexChanging="dgvArticulos_PageIndexChanging" AllowPaging="true" PageSize="3" runat="server">
+        <asp:GridView ID="dgvArticulos" CssClass="table" AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged"  OnPageIndexChanging="dgvArticulos_PageIndexChanging" AllowPaging="true" PageSize="3" runat="server">
 
             <Columns>
                 <asp:BoundField HeaderText="Codigo" DataField="Codigo" />
@@ -67,10 +67,15 @@
                 <asp:BoundField HeaderText="Marca" DataField="MarcaTipo" />
                 <asp:BoundField HeaderText="Categoria" DataField="CategoriaTipo" />
                 <asp:BoundField HeaderText="Precio" DataField="Precio" />
-                <asp:CommandField HeaderText="Ver" ShowSelectButton="true" SelectText="Ver" ControlStyle-CssClass="btn btn-success " />
+                <asp:TemplateField HeaderText="Accion">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="btnVer" Text="Ver" CssClass="btn btn-success " CommandName="Select"  runat="server" />
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <%--<asp:CommandField  HeaderText="Ver" ShowSelectButton="true" SelectText="Ver" ControlStyle-CssClass="btn btn-success " />--%>
              </Columns>
         </asp:GridView>
-        <asp:HyperLink NavigateUrl="FormularioArticulo.aspx" Text="Agregar" CssClass="btn btn-primary" runat="server" />
+        <asp:HyperLink NavigateUrl="FormularioArticulo.aspx" ID="btnAgregar" Text="Agregar" CssClass="btn btn-primary" runat="server" />
     </div>
 
 </asp:Content>

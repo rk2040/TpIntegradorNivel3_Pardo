@@ -30,8 +30,8 @@
 
         <div class="col-6">
             <div class="mb-3">
-                <label for="txtId" class="form-label">Id</label>
-                <asp:TextBox ID="txtId" CssClass="form-control" Enabled="false" runat="server" />
+                <label for="txtId" class="form-label"></label>
+                <asp:TextBox ID="txtId" CssClass="form-control" Enabled="false" Visible="false" runat="server" />
             </div>
             <div class="mb-3">
                 <label for="txtEmail" class="form-label">Email</label>
@@ -42,7 +42,7 @@
                 <asp:TextBox ID="txtPassword" TextMode="Password" CssClass="form-control" runat="server" />
             </div>
             <div class="mb-3">
-                <label for="txtNombre" class="form-label">Nombre</label>
+                <label for="txtNombre" class="form-label">Nombre (Opcional)</label>
                 <asp:TextBox ID="txtNombre" CssClass="form-control" runat="server" />
                 <asp:RequiredFieldValidator CssClass="validator"
                     ControlToValidate="txtNombre"
@@ -51,7 +51,7 @@
                     runat="server" />
             </div>
             <div class="mb-3">
-                <label for="txtApellido" class="form-label">Apellido</label>
+                <label for="txtApellido" class="form-label">Apellido (Opcional)</label>
                 <asp:TextBox ID="txtApellido" CssClass="form-control" runat="server" />
             </div>
 
@@ -65,7 +65,7 @@
             <asp:UpdatePanel ID="upImagenFormulario" runat="server">
                 <ContentTemplate>
                     <div class="mb-3">
-                        <label for="txtUrlImagen" class="form-label">Url Imagen</label>
+                        <label for="txtUrlImagen" class="form-label">Url Imagen (Opcional)</label>
                         <asp:TextBox ID="txtUrlImagen" CssClass="form-control" AutoPostBack="true" runat="server" />
                     </div>
                     <div class="mb-3 card-img-container">

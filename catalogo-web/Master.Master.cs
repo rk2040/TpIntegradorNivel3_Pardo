@@ -13,8 +13,9 @@ namespace catalogo_web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            imgAvatar.ImageUrl = "https://cdn-icons-png.flaticon.com/512/12225/12225935.png";
 
-            if(!(Page is Default || Page is Login || Page is Registro || Page is Error))
+            if (!(Page is Default || Page is Login || Page is Registro || Page is Error))
             {
                 if (!Seguridad.sesionActiva(Session["usuario"]))
                     Response.Redirect("Login.aspx", false);
@@ -25,7 +26,7 @@ namespace catalogo_web
                 Usuario usuario = (Usuario)Session["usuario"];
                 lblUser.Text = usuario.Email;
                 if(!string.IsNullOrEmpty(usuario.ImagenPerfil))
-                    imgAvatar.ImageUrl = "/~Images/" + usuario.ImagenPerfil;
+                    imgAvatar.ImageUrl = "~/Images/" + usuario.ImagenPerfil;
             }
         }
 

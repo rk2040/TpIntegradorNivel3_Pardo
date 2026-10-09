@@ -23,6 +23,12 @@ namespace catalogo_web
             //    dgvArticulos.DataBind();
             //}
 
+            if (!Seguridad.esAdmin(Session["usuario"]))
+            {
+                btnAgregar.Visible = false;
+                dgvArticulos.Columns[6].Visible = false;
+            }
+
             FiltroAvanzado = chkAvanzado.Checked;
             if (!IsPostBack)
             {
@@ -95,5 +101,6 @@ namespace catalogo_web
                 Session.Add("Error", ex);
             }
         }
+
     }
 }
