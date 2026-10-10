@@ -13,7 +13,11 @@ namespace catalogo_web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Seguridad.sesionActiva(Session["usuario"]))
+            {
+                Response.Redirect("Default.aspx", false);
+                return;
+            }
         }
 
         protected void btnRegistrarse_Click(object sender, EventArgs e)
