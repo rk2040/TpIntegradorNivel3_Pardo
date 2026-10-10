@@ -2,6 +2,22 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
+        .card-img-container {
+            width: 100%;
+            max-width: 600px;
+            height: 400px; /* Cambio según qué tan alta quiero la foto */
+            overflow: hidden;
+            background-color: #ffff;
+        }
+
+            .card-img-container img {
+                width: 100% !important;
+                height: 100% !important;
+                display: block;
+                object-fit: contain; /* Ajusta la imagen a su contenedor (ya no muestra solo una parte de la imagen grande) */
+                object-position: center; /* Centra la imagen */
+            }
+
         .validator {
             color: red;
             font-size: 15px;
@@ -75,10 +91,10 @@
             </div>
 
             <div class="mb-3">
-                <asp:Button ID="btnAceptar" Text="Aceptar" CssClass="btn btn-primary" 
+                <asp:Button ID="btnAceptar" Text="Aceptar" CssClass="btn btn-primary"
                     OnClick="btnAceptar_Click" runat="server" />
                 <asp:HyperLink NavigateUrl="ArticulosLista.aspx" Text="Cancelar" CssClass="btn btn-secondary" runat="server" />
-                <asp:Button ID="btnEliminar" Text="Eliminar" CssClass="btn btn-danger" 
+                <asp:Button ID="btnEliminar" Text="Eliminar" CssClass="btn btn-danger"
                     OnClick="btnEliminar_Click" runat="server" />
 
                 <%-- Aca poner panel control para confirmar eliminar --%>
@@ -104,7 +120,9 @@
                         <label for="txtUrlImagen" class="form-label">Url Imagen</label>
                         <asp:TextBox ID="txtUrlImagen" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtUrlImagen_TextChanged" runat="server" />
                     </div>
-                    <asp:Image ID="imgArticulo" ImageUrl="https://media.istockphoto.com/id/1128826884/es/vector/ning%C3%BAn-s%C3%ADmbolo-de-vector-de-imagen-falta-icono-disponible-no-hay-galer%C3%ADa-para-este-momento.jpg?s=612x612&w=0&k=20&c=9vnjI4XI3XQC0VHfuDePO7vNJE7WDM8uzQmZJ1SnQgk=" runat="server" />
+                    <div class="card-img-container">
+                        <asp:Image ID="imgArticulo" ImageUrl="https://media.istockphoto.com/id/1128826884/es/vector/ning%C3%BAn-s%C3%ADmbolo-de-vector-de-imagen-falta-icono-disponible-no-hay-galer%C3%ADa-para-este-momento.jpg?s=612x612&w=0&k=20&c=9vnjI4XI3XQC0VHfuDePO7vNJE7WDM8uzQmZJ1SnQgk=" runat="server" />
+                    </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>

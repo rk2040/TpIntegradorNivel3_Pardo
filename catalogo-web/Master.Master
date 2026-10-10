@@ -40,7 +40,7 @@
                         <%else
     { %>
                         <asp:Label ID="lblUser" Text="user" CssClass="text-light m-auto  mx-2" runat="server" />
-                        <asp:Image ID="imgAvatar" CssClass=" mx-1" Style="height: 40px; width: 40px; border-radius: 50%" runat="server" />
+                        <asp:Image ID="imgAvatar" CssClass=" mx-1" Style="height: 40px; width: 40px; border-radius: 50%; object-fit: cover" runat="server" />
                         <asp:Button ID="btnSalir" Text="Salir" CssClass="btn btn-outline-danger" OnClick="btnSalir_Click" runat="server" />
                         <%  } %>
                         <%-- Imagen de perfil, ya fuera edl if else --%>

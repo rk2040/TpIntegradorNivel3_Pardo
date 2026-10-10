@@ -64,8 +64,9 @@ namespace catalogo_web
 
             // Actualizo la imagen de perfil en el icono
             // Para leer la ruta de la img
+            string versionImg = DateTime.Now.Ticks.ToString(); // Para cambiar el nombre de Url entre una foto y otra y no genere problemas el cache
             Image img = (Image)Master.FindControl("imgAvatar");
-            img.ImageUrl = "~/Images" + usuario.ImagenPerfil;
+            img.ImageUrl = "~/Images/" + usuario.ImagenPerfil + "?v=" + versionImg;
         }
     }
 }

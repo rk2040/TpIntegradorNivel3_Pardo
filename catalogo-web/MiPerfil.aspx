@@ -31,20 +31,15 @@
         <div class="col-md-6">
             <div class="mb-3">
                 <label for="txtEmail" class="form-label">Email</label>
-                <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" />
+                <asp:TextBox ID="txtEmail" CssClass="form-control" Enabled="false" runat="server" />
             </div>
-            <div class="mb-3">
+            <%--<div class="mb-3">
                 <label class="form-label">Password</label>
                 <asp:TextBox ID="txtPassword" TextMode="Password" CssClass="form-control" runat="server" />
-            </div>
+            </div>--%>
             <div class="mb-3">
                 <label for="txtNombre" class="form-label">Nombre</label>
                 <asp:TextBox ID="txtNombre" CssClass="form-control" runat="server" />
-                <asp:RequiredFieldValidator CssClass="validator"
-                    ControlToValidate="txtNombre"
-                    ErrorMessage="Debe ingresar un nombre."
-                    ValidationGroup="articuloGroup"
-                    runat="server" />
             </div>
             <div class="mb-3">
                 <label for="txtApellido" class="form-label">Apellido</label>
