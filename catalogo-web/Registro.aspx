@@ -1,22 +1,27 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Registro.aspx.cs" Inherits="catalogo_web.Registro" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-        <style>
-    .card-img-container {
-        width: 100%;
-        height: auto;         /* Cambio según qué tan alta quiero la foto */
-        overflow: hidden;      
-        background-color: #f0f0f0; 
-    }
+    <style>
+        .card-img-container {
+            width: 100%;
+            height: auto; /* Cambio según qué tan alta quiero la foto */
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
 
-    .card-img-container img {
-        width: 100% !important;
-        height: 100% !important;
-        display: block;
-        object-fit: contain; /* Ajusta la imagen a su contenedor (ya no muestra solo una parte de la imagen grande) */
-        object-position: center; /* Centra la imagen */ 
-    }
-</style>
+            .card-img-container img {
+                width: 100% !important;
+                height: 100% !important;
+                display: block;
+                object-fit: contain; /* Ajusta la imagen a su contenedor (ya no muestra solo una parte de la imagen grande) */
+                object-position: center; /* Centra la imagen */
+            }
+
+        .validator {
+            color: red;
+            font-size: 15px;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -36,19 +41,33 @@
             <div class="mb-3">
                 <label for="txtEmail" class="form-label">Email</label>
                 <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" />
+                <asp:RequiredFieldValidator ID="rfvEmail" CssClass="validator"
+                    ControlToValidate="txtEmail"
+                    ErrorMessage="Debe ingresar un email."
+                    runat="server" />
+                <asp:RegularExpressionValidator ID="revEmail" CssClass="validator"
+                    ControlToValidate="txtEmail"
+                    ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                    ErrorMessage="El formato de email no es valido." 
+                    runat="server" />
             </div>
             <div class="mb-3">
                 <label class="form-label">Password</label>
                 <asp:TextBox ID="txtPassword" TextMode="Password" CssClass="form-control" runat="server" />
+                <asp:RequiredFieldValidator ID="rfvPass" CssClass="validator"
+                    ControlToValidate="txtPassword"
+                    ErrorMessage="Debe ingresar un Password."
+                    runat="server" />
+                <asp:RegularExpressionValidator ID="revPass" CssClass="validator"
+                    ControlToValidate="txtPassword"
+                    ValidationExpression="^.{4,8}$"
+                    ErrorMessage="El Password debe tener entre 4 y 8 caracteres."
+                    runat="server" />
             </div>
             <div class="mb-3">
                 <label for="txtNombre" class="form-label">Nombre (Opcional)</label>
                 <asp:TextBox ID="txtNombre" CssClass="form-control" runat="server" />
-                <asp:RequiredFieldValidator CssClass="validator"
-                    ControlToValidate="txtNombre"
-                    ErrorMessage="Debe ingresar un nombre."
-                    ValidationGroup="articuloGroup"
-                    runat="server" />
+
             </div>
             <div class="mb-3">
                 <label for="txtApellido" class="form-label">Apellido (Opcional)</label>

@@ -43,10 +43,9 @@
             <div class="mb-3">
                 <label for="txtNombre" class="form-label">Nombre</label>
                 <asp:TextBox ID="txtNombre" CssClass="form-control" runat="server" />
-                <asp:RequiredFieldValidator CssClass="validator"
+                <asp:RequiredFieldValidator ID="rfvNombre" CssClass="validator"
                     ControlToValidate="txtNombre"
                     ErrorMessage="Debe ingresar un nombre."
-                    ValidationGroup="articuloGroup"
                     runat="server" />
             </div>
             <div class="mb-3">
@@ -64,23 +63,20 @@
             <div class="mb-3">
                 <label for="txtPrecio" class="form-label">Precio</label>
                 <asp:TextBox ID="txtPrecio" CssClass="form-control" runat="server" />
-                <asp:RegularExpressionValidator CssClass="validator"
+                <asp:RequiredFieldValidator ID="rfvPrecio" CssClass="validator"
+                    ControlToValidate="txtPrecio"
+                    ErrorMessage="Debe ingresar un precio."
+                    runat="server" />
+                <asp:RegularExpressionValidator ID="revPrecio" CssClass="validator"
                     ControlToValidate="txtPrecio"
                     ErrorMessage="Solo números positivos."
                     ValidationExpression="^[0-9]+([.,][0-9]{1,4})?$"
-                    ValidationGroup="articuloGroup"
-                    runat="server" />
-                <asp:RequiredFieldValidator CssClass="validator"
-                    ControlToValidate="txtPrecio"
-                    ErrorMessage="Debe ingresar un precio."
-                    ValidationGroup="articuloGroup"
                     runat="server" />
             </div>
 
             <div class="mb-3">
                 <asp:Button ID="btnAceptar" Text="Aceptar" CssClass="btn btn-primary" 
-                    OnClick="btnAceptar_Click" runat="server"
-                    ValidationGroup="articuloGroup"/>
+                    OnClick="btnAceptar_Click" runat="server" />
                 <asp:HyperLink NavigateUrl="ArticulosLista.aspx" Text="Cancelar" CssClass="btn btn-secondary" runat="server" />
                 <asp:Button ID="btnEliminar" Text="Eliminar" CssClass="btn btn-danger" 
                     OnClick="btnEliminar_Click" runat="server" />
@@ -92,7 +88,7 @@
                             <%if (ConfirmaEliminacion)
                                 {%>
                             <asp:CheckBox ID="chkConfirmaEliminacion" Text=" Confirmar Eliminación " runat="server" />
-                            <asp:Button ID="btnConfirmaEliminar" Text="Eliminar" CssClass="btn btn-outline-danger" OnClick="btnConfirmaEliminar_Click" runat="server" />
+                            <asp:Button ID="btnConfirmaEliminar" Text="Eliminar" CssClass="btn btn-outline-danger m-2" OnClick="btnConfirmaEliminar_Click" runat="server" />
                             <%}%>
                         </ContentTemplate>
                     </asp:UpdatePanel>

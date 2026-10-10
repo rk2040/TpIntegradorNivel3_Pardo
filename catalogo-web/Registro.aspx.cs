@@ -18,6 +18,10 @@ namespace catalogo_web
 
         protected void btnRegistrarse_Click(object sender, EventArgs e)
         {
+            Page.Validate();
+            if (!Page.IsValid)
+                return;
+
             try
             {
                 Usuario usuario = new Usuario();
@@ -41,6 +45,7 @@ namespace catalogo_web
             catch (Exception ex)
             {
                 Session.Add("Error", ex);
+                Response.Redirect("Error.aspx", false);
             }
         }
     }

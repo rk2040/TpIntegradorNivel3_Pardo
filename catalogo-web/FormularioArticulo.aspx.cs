@@ -91,12 +91,12 @@ namespace catalogo_web
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
+            Page.Validate();
+            if (!Page.IsValid)
+                return;
+
             try
             {
-                //Page.Validate();
-                //if (!Page.IsValid)
-                //    return;
-
                 Articulo nuevo = new Articulo();
                 ArticuloNegocio negocio = new ArticuloNegocio();
 
@@ -134,6 +134,7 @@ namespace catalogo_web
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             ConfirmaEliminacion = true;
+
         }
 
         protected void btnConfirmaEliminar_Click(object sender, EventArgs e)
@@ -145,6 +146,11 @@ namespace catalogo_web
                     ArticuloNegocio negocio = new ArticuloNegocio();
                     negocio.eliminar(int.Parse(txtId.Text));
                     Response.Redirect("ArticulosLista.aspx");
+                }
+                else
+                {
+                    ConfirmaEliminacion = false;
+                    btnEliminar.Enabled = true;
                 }
             }
             catch (Exception ex)

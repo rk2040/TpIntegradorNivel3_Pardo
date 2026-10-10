@@ -19,16 +19,14 @@ namespace catalogo_web
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
+            Page.Validate();
+            if (!Page.IsValid)
+                return;
+
             Usuario usuario = new Usuario();
             UsuarioNegocio negocio = new UsuarioNegocio();
             try
             {
-                // Valida textos vacion
-                if(Validacion.validarTextoVacio(txtEmail) || Validacion.validarTextoVacio(txtPassword))
-                {
-                    Session.Add("Error", "Debes completar ambos campos.");
-                    Response.Redirect("Error.aspx");
-                }
                 usuario.Email = txtEmail.Text;
                 usuario.Pass = txtPassword.Text;
 
@@ -46,7 +44,7 @@ namespace catalogo_web
             catch (Exception ex)
             {
                 Session.Add("Error", ex.ToString());
-                Response.Redirect("Error.aspx");
+                Response.Redirect("Error.aspx", false);
             }
         }
     }
