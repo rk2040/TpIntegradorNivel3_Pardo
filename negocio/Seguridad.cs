@@ -11,7 +11,9 @@ namespace negocio
     {
         public static bool sesionActiva(object user)
         {
-            Usuario usuario = user != null ? (Usuario)user : null;
+            //Usuario usuario = user != null ? (Usuario)user : null;  // No comprueba si el obj es de Tipo Usuario
+
+            Usuario usuario = user as Usuario; // Si el obj no es de tipo Usuario, devuelve null
 
             if (usuario != null && usuario.Id != 0)
                 return true;
@@ -24,6 +26,11 @@ namespace negocio
             Usuario usuario = user != null ? (Usuario)user : null;
 
             return usuario != null ? usuario.Admin : false;
+        }
+
+        public static string manejoError(object error)
+        {
+            return error.ToString();
         }
 
     }

@@ -11,7 +11,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <diw class="row">
+    <div class="row">
         <div class="col-6">
             <h3>Login</h3>
             <div class="mb-3">
@@ -40,6 +40,6 @@
                 <asp:HyperLink NavigateUrl="Default.aspx" Text="Cancelar" CssClass="btn btn-secondary" runat="server" />
             </div>
         </div>
-    </diw>
+    </div>
 
 </asp:Content>

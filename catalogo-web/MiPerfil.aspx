@@ -46,7 +46,7 @@
                 <asp:TextBox ID="txtApellido" CssClass="form-control" runat="server" />
             </div>
             <div class="col-md-6">
-                <asp:Button Text="Guardar" ID="btnGuardae" CssClass="btn btn-primary m-1" OnClick="btnGuardae_Click" runat="server" />
+                <asp:Button Text="Guardar" ID="btnGuardar" CssClass="btn btn-primary m-1" OnClick="btnGuardar_Click" runat="server" />
                 <asp:HyperLink NavigateUrl="/" Text="Cancelar" CssClass="btn btn-danger m-1" runat="server" />
             </div>
         </div>

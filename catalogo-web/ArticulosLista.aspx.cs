@@ -14,19 +14,11 @@ namespace catalogo_web
         public bool FiltroAvanzado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!IsPostBack)
-            //{
-            //    ArticuloNegocio negocio = new ArticuloNegocio();
-            //    //Session.Add("listaArticulos", negocio.listar());
-            //    Session.Add("listaArticulos", negocio.listarConSP());
-            //    dgvArticulos.DataSource = Session["listaArticulos"];
-            //    dgvArticulos.DataBind();
-            //}
 
             if (!Seguridad.esAdmin(Session["usuario"]))
             {
                 btnAgregar.Visible = false;
-                dgvArticulos.Columns[6].Visible = false;
+                dgvArticulos.Columns[6].Visible = false; //Columna de boton a formulario
             }
 
             FiltroAvanzado = chkAvanzado.Checked;
@@ -56,7 +48,9 @@ namespace catalogo_web
         {
             List<Articulo> lista = (List<Articulo>)Session["listaArticulos"];
 
-            List<Articulo> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            //List<Articulo> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+
+            List<Articulo> listaFiltrada = lista.FindAll(x => !string.IsNullOrEmpty(x.Nombre) && x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper())); // Agrego : !string.IsNullOrEmpty(x.Nombre) &&  , para evitar que un nombre null pase por ToUpper
 
             dgvArticulos.DataSource= listaFiltrada;
             dgvArticulos.DataBind();
@@ -97,8 +91,8 @@ namespace catalogo_web
             }
             catch (Exception ex)
             {
-
-                Session.Add("Error", ex);
+                Session.Add("Error", Seguridad.manejoError(ex));
+                Response.Redirect("Error.aspx", false);
             }
         }
 

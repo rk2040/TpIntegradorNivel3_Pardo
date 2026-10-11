@@ -36,37 +36,46 @@ namespace catalogo_web
             catch (Exception ex)
             {
 
-                Session.Add("Error", ex.ToString());
+                Session.Add("Error", Seguridad.manejoError(ex));
+                Response.Redirect("Error.aspx", false);
             }
         }
 
-        protected void btnGuardae_Click(object sender, EventArgs e)
+        protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            Page.Validate();
-            if (!Page.IsValid)
-                return;
-
-            UsuarioNegocio negocio = new UsuarioNegocio();
-            Usuario usuario = (Usuario)Session["usuario"];
-            // Para escribir la ruta de la img si se carga algo
-            if (txtImagenPerfil.PostedFile.FileName != "")
+            //Page.Validate();
+            //if (!Page.IsValid)
+            //    return;
+            try
             {
-                string ruta = Server.MapPath("./Images/");
-                txtImagenPerfil.PostedFile.SaveAs(ruta + "perfil-" + usuario.Id + ".jpg");
-                usuario.ImagenPerfil = "perfil-" + usuario.Id + ".jpg";
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                Usuario usuario = (Usuario)Session["usuario"];
+                // Para escribir la ruta de la img si se carga algo
+                if (txtImagenPerfil.PostedFile.FileName != "")
+                {
+                    string ruta = Server.MapPath("./Images/");
+                    txtImagenPerfil.PostedFile.SaveAs(ruta + "perfil-" + usuario.Id + ".jpg");
+                    usuario.ImagenPerfil = "perfil-" + usuario.Id + ".jpg";
+                }
+
+                // Guardo los datos del usuario
+                //usuario.Email = txtEmail.Text;
+                usuario.Nombre = txtNombre.Text;
+                usuario.Apellido = txtApellido.Text;
+                negocio.actualizar(usuario);
+
+                // Actualizo la imagen de perfil en el icono
+                // Para leer la ruta de la img
+                string versionImg = DateTime.Now.Ticks.ToString(); // Para cambiar el nombre de Url entre una foto y otra y no genere problemas el cache
+                Image img = (Image)Master.FindControl("imgAvatar");
+                img.ImageUrl = "~/Images/" + usuario.ImagenPerfil + "?v=" + versionImg;
             }
+            catch (Exception ex)
+            {
 
-            // Guardo los datos del usuario
-            //usuario.Email = txtEmail.Text;
-            usuario.Nombre = txtNombre.Text;
-            usuario.Apellido = txtApellido.Text;
-            negocio.actualizar(usuario);
-
-            // Actualizo la imagen de perfil en el icono
-            // Para leer la ruta de la img
-            string versionImg = DateTime.Now.Ticks.ToString(); // Para cambiar el nombre de Url entre una foto y otra y no genere problemas el cache
-            Image img = (Image)Master.FindControl("imgAvatar");
-            img.ImageUrl = "~/Images/" + usuario.ImagenPerfil + "?v=" + versionImg;
+                Session.Add("Error", Seguridad.manejoError(ex));
+                Response.Redirect("Error.aspx", false);
+            }
         }
     }
 }
