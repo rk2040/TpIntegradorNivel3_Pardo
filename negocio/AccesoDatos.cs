@@ -38,31 +38,17 @@ namespace negocio
         }
 
         public void ejecutarLectura()
-        {
+        {   // Sin try catch porque entran en el try catch del metodo que lo llama
             comando.Connection = conexion;
-            try
-            {
-                conexion.Open();
-                lector = comando.ExecuteReader();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            conexion.Open();
+            lector = comando.ExecuteReader();
         }
 
         public void ejecutarAccion()
-        {
+        {   // Sin try catch porque entran en el try catch del metodo que lo llama
             comando.Connection = conexion;
-            try
-            {
-                conexion.Open();
-                comando.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            conexion.Open();
+            comando.ExecuteNonQuery();
         }
 
         public int ejecutarAccionScalar()
@@ -73,12 +59,14 @@ namespace negocio
                 conexion.Open();
                 return int.Parse(comando.ExecuteScalar().ToString());
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //catch (Exception ex) // Saco el catch porque no estoy haciendo nada con la ex
+            //{
+            //    throw ex;  // Relanza la excepción, pero puede perder información de la pila de llamadas
+            //}
             finally
-            { conexion.Close(); }
+            {  // Acá si cierro la conexión porque no tengo un lector que se vaya a leer en el metodo que lo llame
+                conexion.Close(); 
+            }
         }
 
         public void setearParametros(string nombre, object valor)
@@ -86,7 +74,7 @@ namespace negocio
             comando.Parameters.AddWithValue(nombre, valor);
         }
 
-        public void cerrarConexio()
+        public void cerrarConexion()
         {
             if(lector != null)
                 lector.Close();

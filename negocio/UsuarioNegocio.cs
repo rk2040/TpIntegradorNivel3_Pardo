@@ -25,14 +25,13 @@ namespace negocio
 
                 return datos.ejecutarAccionScalar();
             }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
+            //catch (Exception ex) // Saco el catch porque no estoy haciendo nada con la ex
+            //{
+            //    throw ex;  // Relanza la excepción, pero puede perder información de la pila de llamadas
+            //}
             finally
             {
-                datos.cerrarConexio();
+                datos.cerrarConexion();
             }
         }
 
@@ -64,14 +63,13 @@ namespace negocio
                 }
                 return false;
             }
-            catch (Exception ex)
+            //catch (Exception ex) // Saco el catch porque no estoy haciendo nada con la ex
+            //{
+            //    throw ex;  // Relanza la excepción, pero puede perder información de la pila de llamadas
+            //}
+            finally // Cierro la conexión acá y no en AccesoDatos ejecutarLectura(), porque necesito que siga abierta para que continue leyendo mientras se este ejecuntando listarConSP()
             {
-
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexio();
+                datos.cerrarConexion();
             }
         }
 
@@ -87,14 +85,13 @@ namespace negocio
                 datos.setearParametros("@imagen", (object)usuario.ImagenPerfil ?? DBNull.Value);
                 datos.ejecutarAccion();
             }
-            catch (Exception ex)
+            //catch (Exception ex) // Saco el catch porque no estoy haciendo nada con la ex
+            //{
+            //    throw ex;  // Relanza la excepción, pero puede perder información de la pila de llamadas
+            //}
+            finally // Cierro la conexión acá y no en AccesoDatos ejecutarLectura(), porque necesito que siga abierta para que continue leyendo mientras se este ejecuntando este metodo.
             {
-
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexio();
+                datos.cerrarConexion();
             }
         }
 

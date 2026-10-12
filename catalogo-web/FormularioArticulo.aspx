@@ -85,8 +85,8 @@
                     runat="server" />
                 <asp:RegularExpressionValidator ID="revPrecio" CssClass="validator"
                     ControlToValidate="txtPrecio"
-                    ErrorMessage="Ingrese un número igual o mayor que cero."
-                    ValidationExpression="^[0-9]+([.,][0-9]{1,4})?$"
+                    ErrorMessage="Ingrese un número igual o mayor que cero. Use una coma para decimales."
+                    ValidationExpression="^[0-9]+(,[0-9]{1,4})?$"
                     runat="server" />
             </div>
 

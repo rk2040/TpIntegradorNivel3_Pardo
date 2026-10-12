@@ -19,18 +19,23 @@ namespace negocio
                 return true;
             else
                 return false;
+
+            // return usuario != null && usuario.Id != 0;  // opción mas corta
         }
 
         public static bool esAdmin(object user)
         {
-            Usuario usuario = user != null ? (Usuario)user : null;
+            //Usuario usuario = user != null ? (Usuario)user : null;
+
+            Usuario usuario = user as Usuario;
 
             return usuario != null ? usuario.Admin : false;
+            //return usuario != null && usuario.Admin; // mas corto
         }
 
-        public static string manejoError(object error)
+        public static string manejoError(Exception error)
         {
-            return error.ToString();
+            return error.Message;
         }
 
     }

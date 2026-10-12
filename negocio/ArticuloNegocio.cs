@@ -11,8 +11,8 @@ using dominio;
 namespace negocio
 {
     public class ArticuloNegocio
-    {
-        private AccesoDatos datos = new AccesoDatos();
+    { 
+        //private AccesoDatos datos = new AccesoDatos();  // Inicializo datos en cada metodo que lo necesite y lo cierro en el mismo metodo.
 
         public List<Articulo> listar(string id = "") // "" para que sea un parametro opcional
         {
@@ -100,15 +100,19 @@ namespace negocio
                 }
                 return lista;
             }
-            catch (Exception ex)
+            //catch (Exception ex) // Saco el catch porque no estoy haciendo nada con la ex
+            //{
+            //    throw ex;  // Relanza la excepción, pero puede perder información de la pila de llamadas
+            //}
+            finally // Cierro la conexión acá y no en AccesoDatos ejecutarLectura(), porque necesito que siga abierta para que continue leyendo mientras se este ejecuntando este metodo.
             {
-
-                throw ex;
+                datos.cerrarConexion();  
             }
         }
 
         public void agregarConSP(Articulo nuevo)
         {
+            AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearProcedimiento("storedAltaArticulo");
@@ -121,18 +125,19 @@ namespace negocio
                 datos.setearParametros("@precio", nuevo.Precio);
                 datos.ejecutarAccion();
             }
-            catch (Exception ex)
+            //catch (Exception ex) // Saco el catch porque no estoy haciendo nada con la ex
+            //{ 
+            //    throw ex;  // Relanza la excepción, pero puede perder información de la pila de llamadas
+            //}
+            finally // Cierro la conexión acá y no en AccesoDatos ejecutarLectura(), porque necesito que siga abierta para que continue leyendo mientras se este ejecuntando este metodo.
             {
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexio();
+                datos.cerrarConexion();
             }
         }
 
         public void modificar(Articulo nuevo)
         {
+            AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearConsulta("Update ARTICULOS set Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, IdMarca = @idMarca, IdCategoria = @idCategoria, ImagenUrl = @imagenUrl, Precio = @precio where id = @id");
@@ -146,18 +151,19 @@ namespace negocio
                 datos.setearParametros("@precio", nuevo.Precio);
                 datos.ejecutarAccion();
             }
-            catch (Exception ex)
+            //catch (Exception ex) // Saco el catch porque no estoy haciendo nada con la ex
+            //{
+            //    throw ex;  // Relanza la excepción, pero puede perder información de la pila de llamadas
+            //}
+            finally // Cierro la conexión acá y no en AccesoDatos ejecutarLectura(), porque necesito que siga abierta para que continue leyendo mientras se este ejecuntando este metodo.
             {
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexio();
+                datos.cerrarConexion();
             }
         }
 
         public void modificarConSP(Articulo nuevo)
         {
+            AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearProcedimiento("storedModificarArticulo");
@@ -172,27 +178,32 @@ namespace negocio
                 datos.setearParametros("@precio", nuevo.Precio);
                 datos.ejecutarAccion();
             }
-            catch (Exception ex)
+            //catch (Exception ex) // Saco el catch porque no estoy haciendo nada con la ex
+            //{
+            //    throw ex;  // Relanza la excepción, pero puede perder información de la pila de llamadas
+            //}
+            finally // Cierro la conexión acá y no en AccesoDatos ejecutarLectura(), porque necesito que siga abierta para que continue leyendo mientras se este ejecuntando este metodo.
             {
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexio();
+                datos.cerrarConexion();
             }
         }
 
         public void eliminar(int id)
         {
+            AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearConsulta("delete from ARTICULOS where id = @id");
-                datos.setearParametros("id", id);
+                datos.setearParametros("@id", id);
                 datos.ejecutarAccion();
             }
-            catch (Exception ex)
+            //catch (Exception ex) // Saco el catch porque no estoy haciendo nada con la ex
+            //{
+            //    throw ex;  // Relanza la excepción, pero puede perder información de la pila de llamadas
+            //}
+            finally // Cierro la conexión acá y no en AccesoDatos ejecutarLectura(), porque necesito que siga abierta para que continue leyendo mientras se este ejecuntando este metodo.
             {
-                throw ex;
+                datos.cerrarConexion();
             }
         }
 
@@ -324,9 +335,13 @@ namespace negocio
 
                 return lista;
             }
-            catch (Exception ex)
+            //catch (Exception ex) // Saco el catch porque no estoy haciendo nada con la ex
+            //{
+            //    throw ex;  // Relanza la excepción, pero puede perder información de la pila de llamadas
+            //}
+            finally // Cierro la conexión acá y no en AccesoDatos ejecutarLectura(), porque necesito que siga abierta para que continue leyendo mientras se este ejecuntando este metodo.
             {
-                throw ex;
+                datos.cerrarConexion();
             }
         }
     }
