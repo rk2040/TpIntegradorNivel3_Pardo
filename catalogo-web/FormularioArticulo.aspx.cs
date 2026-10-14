@@ -51,14 +51,17 @@ namespace catalogo_web
 
                 // Configuracion para saber si trajo un Id de la lista. Si trajo, es que entro para Modificar, no para crear uno Nuevo. Si no trae Id, lo cargamos como string vacio
                 string id = Request.QueryString["id"] != null ? Request.QueryString["id"] : string.Empty;
-
+                int idArticulo = 0;
 
                 // Si trae un id de la lista, cargamos los datos del producto de ese id, para ver y/o modificar
                 if( id != string.Empty && !IsPostBack)
                 {
                     btnEliminar.Enabled = true;
                     ArticuloNegocio negocio = new ArticuloNegocio();
-                    List<Articulo> lista = negocio.listar(id);
+                    //idArticulo = int.Parse(id); mejor las dos lineas de abajo con su validación, por las dudas
+                    if(!int.TryParse(id, out idArticulo)) // Intento de casteo para el int, sino puede, Exception
+                        throw new Exception("El ID del articulo no es valido."); 
+                    List<Articulo> lista = negocio.listarConSP(idArticulo);
                     Articulo seleccionado = lista[0]; // devuelve una lista con un unico elemento, el del id
 
                     // Guarto el Articulo en Session

@@ -14,60 +14,8 @@ namespace negocio
     { 
         //private AccesoDatos datos = new AccesoDatos();  // Inicializo datos en cada metodo que lo necesite y lo cierro en el mismo metodo.
 
-        public List<Articulo> listar(string id = "") // "" para que sea un parametro opcional
-        {
-            List<Articulo> lista = new List<Articulo>();
-            SqlConnection conexion = new SqlConnection();
-            SqlCommand comando = new SqlCommand();
-            SqlDataReader lector;
-
-            try
-            {
-                conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_WEB_DB; integrated security=true";
-                comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion MarcaBD, C.Descripcion CategoriaBD, A.IdMarca , A.IdCategoria , A.ImagenUrl, A.Precio from ARTICULOS A, CATEGORIAS C, MARCAS M where A.IdMarca = M.Id AND A.IdCategoria = C.Id \r\n";
-
-                if (id != "")
-                    comando.CommandText += "And A.Id =" + id;
-                comando.Connection = conexion;
-                conexion.Open();
-                lector = comando.ExecuteReader();
-
-                while (lector.Read())
-                {
-                    Articulo aux = new Articulo();
-                    aux.Id = (int)lector["Id"];   //Oculta
-                    aux.Codigo = (string)lector["Codigo"];
-                    aux.Nombre = (string)lector["Nombre"];
-                    aux.Descripcion = (string)lector["Descripcion"];
-
-                    aux.MarcaTipo = new Marca();
-                    aux.MarcaTipo.Id = (int)lector["IdMarca"];
-                    aux.MarcaTipo.Descripcion = (string)lector["MarcaBD"];
-
-                    aux.CategoriaTipo = new Categoria();
-                    aux.CategoriaTipo.Id = (int)lector["IdCategoria"];
-                    aux.CategoriaTipo.Descripcion = (string)lector["CategoriaBD"];
-
-                    if (!(lector["ImagenUrl"] is DBNull))
-                        aux.ImagenUrl = (string)lector["ImagenUrl"];   //Oculta
-
-                    aux.Precio = (decimal)lector["Precio"];
-
-                    lista.Add(aux);
-                }
-
-                conexion.Close();
-                return lista;
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public List<Articulo> listarConSP()
+  
+        public List<Articulo> listarConSP(int id = 0) // = 0 para que sea un parametro "opcional". cuando no agregue parametro tomara 0 
         {
             List<Articulo> lista = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
@@ -75,6 +23,7 @@ namespace negocio
             try
             {
                 datos.setearProcedimiento("storedListar");
+                datos.setearParametros("@id", id); // cambie el SP en la BD y ahora necesito un id, para poder usar solo listarConSP y asi poder borrar el metodo listar() ya que se repetian practicamente
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -129,37 +78,12 @@ namespace negocio
             //{ 
             //    throw ex;  // Relanza la excepción, pero puede perder información de la pila de llamadas
             //}
-            finally // Cierro la conexión acá y no en AccesoDatos ejecutarLectura(), porque necesito que siga abierta para que continue leyendo mientras se este ejecuntando este metodo.
+            finally // Cierro la conexión acá y no en AccesoDatos, porque necesito que siga abierta para que continue leyendo mientras se este ejecuntando este metodo.
             {
                 datos.cerrarConexion();
             }
         }
 
-        public void modificar(Articulo nuevo)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                datos.setearConsulta("Update ARTICULOS set Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, IdMarca = @idMarca, IdCategoria = @idCategoria, ImagenUrl = @imagenUrl, Precio = @precio where id = @id");
-                datos.setearParametros("@id", nuevo.Id);
-                datos.setearParametros("@codigo", nuevo.Codigo);
-                datos.setearParametros("@nombre", nuevo.Nombre);
-                datos.setearParametros("@descripcion", nuevo.Descripcion);
-                datos.setearParametros("@idMarca", nuevo.MarcaTipo.Id);
-                datos.setearParametros("@idCategoria", nuevo.CategoriaTipo.Id);
-                datos.setearParametros("@imagenUrl", nuevo.ImagenUrl);
-                datos.setearParametros("@precio", nuevo.Precio);
-                datos.ejecutarAccion();
-            }
-            //catch (Exception ex) // Saco el catch porque no estoy haciendo nada con la ex
-            //{
-            //    throw ex;  // Relanza la excepción, pero puede perder información de la pila de llamadas
-            //}
-            finally // Cierro la conexión acá y no en AccesoDatos ejecutarLectura(), porque necesito que siga abierta para que continue leyendo mientras se este ejecuntando este metodo.
-            {
-                datos.cerrarConexion();
-            }
-        }
 
         public void modificarConSP(Articulo nuevo)
         {
@@ -182,7 +106,7 @@ namespace negocio
             //{
             //    throw ex;  // Relanza la excepción, pero puede perder información de la pila de llamadas
             //}
-            finally // Cierro la conexión acá y no en AccesoDatos ejecutarLectura(), porque necesito que siga abierta para que continue leyendo mientras se este ejecuntando este metodo.
+            finally // Cierro la conexión al finalizar el método.
             {
                 datos.cerrarConexion();
             }
@@ -201,7 +125,7 @@ namespace negocio
             //{
             //    throw ex;  // Relanza la excepción, pero puede perder información de la pila de llamadas
             //}
-            finally // Cierro la conexión acá y no en AccesoDatos ejecutarLectura(), porque necesito que siga abierta para que continue leyendo mientras se este ejecuntando este metodo.
+            finally // Cierro la conexión al finalizar el método.
             {
                 datos.cerrarConexion();
             }
@@ -216,19 +140,27 @@ namespace negocio
             {
                 string consulta = "select A.Codigo, A.Nombre, A.Descripcion, M.Descripcion as Marca, C.Descripcion as Categoria, A.ImagenUrl, A.Precio, A.Id, A.IdMarca, A.IdCategoria from ARTICULOS A, CATEGORIAS C, MARCAS M where A.IdMarca = M.Id AND A.IdCategoria = C.Id AND \r\n";
 
+                decimal precio = 0; // Para validar que el valor ingresado sea valido
+
+                if (campo == "Precio" && !decimal.TryParse(filtro, out precio))
+                    throw new Exception("El precio ingresado no es valido");
+
                 switch (campo)
                 {
                     case "Codigo":
                         switch (criterio)
                         {
                             case "Empieza con":
-                                consulta += "A.Codigo like '" + filtro + "%'";
+                                consulta += "A.Codigo like @filtro";
+                                datos.setearParametros("@filtro", filtro + "%");
                                 break;
                             case "Termina con":
-                                consulta += "A.Codigo like '%" + filtro + "'";
+                                consulta += "A.Codigo like @filtro";
+                                datos.setearParametros("@filtro", "%" + filtro);
                                 break;
                             case "Contiene":
-                                consulta += "A.Codigo like '%" + filtro + "%'";
+                                consulta += "A.Codigo like @filtro";
+                                datos.setearParametros("@filtro", "%" + filtro + "%");
                                 break;
                             default:
                                 break;
@@ -239,13 +171,16 @@ namespace negocio
                         switch (criterio)
                         {
                             case "Empieza con":
-                                consulta += "A.Nombre like '" + filtro + "%'";
+                                consulta += "A.Nombre like @filtro";
+                                datos.setearParametros("@filtro", filtro + "%");
                                 break;
                             case "Termina con":
-                                consulta += "A.Nombre like '%" + filtro + "'";
+                                consulta += "A.Nombre like @filtro";
+                                datos.setearParametros("@filtro", "%" + filtro);
                                 break;
                             case "Contiene":
-                                consulta += "A.Nombre like '%" + filtro + "%'";
+                                consulta += "A.Nombre like @filtro";
+                                datos.setearParametros("@filtro", "%" + filtro + "%");
                                 break;
                             default:
                                 break;
@@ -256,13 +191,16 @@ namespace negocio
                         switch (criterio)
                         {
                             case "Empieza con":
-                                consulta += "M.Descripcion like '" + filtro + "%'";
+                                consulta += "M.Descripcion like @filtro";
+                                datos.setearParametros("@filtro", filtro + "%");
                                 break;
                             case "Termina con":
-                                consulta += "M.Descripcion like '%" + filtro + "'";
+                                consulta += "M.Descripcion like @filtro";
+                                datos.setearParametros("@filtro", "%" + filtro);
                                 break;
                             case "Contiene":
-                                consulta += "M.Descripcion like '%" + filtro + "%'";
+                                consulta += "M.Descripcion like @filtro";
+                                datos.setearParametros("@filtro", "%" + filtro + "%");
                                 break;
                             default:
                                 break;
@@ -273,13 +211,16 @@ namespace negocio
                         switch (criterio)
                         {
                             case "Empieza con":
-                                consulta += "C.Descripcion like '" + filtro + "%'";
+                                consulta += "C.Descripcion like @filtro";
+                                datos.setearParametros("@filtro", filtro + "%");
                                 break;
                             case "Termina con":
-                                consulta += "C.Descripcion like '%" + filtro + "'";
+                                consulta += "C.Descripcion like @filtro";
+                                datos.setearParametros("@filtro", "%" + filtro);
                                 break;
                             case "Contiene":
-                                consulta += "C.Descripcion like '%" + filtro + "%'";
+                                consulta += "C.Descripcion like @filtro";
+                                datos.setearParametros("@filtro", "%" + filtro + "%");
                                 break;
                             default:
                                 break;
@@ -290,13 +231,16 @@ namespace negocio
                         switch (criterio)
                         {
                             case "Mayor a":
-                                consulta += "A.Precio > " + filtro;
+                                consulta += "A.Precio > @filtro";
+                                datos.setearParametros("@filtro", precio);
                                 break;
                             case "Menor a":
-                                consulta += "A.Precio < " + filtro;
+                                consulta += "A.Precio < @filtro";
+                                datos.setearParametros("@filtro", precio);
                                 break;
-                            case "Exacto":
-                                consulta += "A.Precio = " + filtro;
+                            case "Igual a":
+                                consulta += "A.Precio = @filtro";
+                                datos.setearParametros("@filtro", precio);
                                 break;
                             default:
                                 break;
@@ -339,7 +283,7 @@ namespace negocio
             //{
             //    throw ex;  // Relanza la excepción, pero puede perder información de la pila de llamadas
             //}
-            finally // Cierro la conexión acá y no en AccesoDatos ejecutarLectura(), porque necesito que siga abierta para que continue leyendo mientras se este ejecuntando este metodo.
+            finally // Cierro la conexión al finalizar el método.
             {
                 datos.cerrarConexion();
             }
