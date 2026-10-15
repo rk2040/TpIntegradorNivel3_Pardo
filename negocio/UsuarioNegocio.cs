@@ -21,7 +21,7 @@ namespace negocio
                 datos.setearParametros("@nombre", nuevo.Nombre);
                 datos.setearParametros("@apellido", nuevo.Apellido);
                 datos.setearParametros("@imagenPerfil", nuevo.ImagenPerfil);
-                //datos.setearParametros("@admin", nuevo.Admin);
+                // Los usuarios nuevos se registran como no administradores por defecto. Por eso no agrego @admin
 
                 return datos.ejecutarAccionScalar();
             }
@@ -29,7 +29,7 @@ namespace negocio
             //{
             //    throw ex;  // Relanza la excepción, pero puede perder información de la pila de llamadas
             //}
-            finally
+            finally // Cierro la conexión al finalizar el método.
             {
                 datos.cerrarConexion();
             }
@@ -47,11 +47,7 @@ namespace negocio
 
                 if (datos.Lector.Read())
                 {
-                    usuario.Id = (int)datos.Lector["Id"];
-                    //if (!(datos.Lector["email"] is DBNull))
-                    //    usuario.Email = (string)datos.Lector["email"];
-                    //if (!(datos.Lector["pass"] is DBNull))
-                    //    usuario.Pass = (string)datos.Lector["pass"];
+                    usuario.Id = (int)datos.Lector["Id"]; // id incremental desde BD 
                     if (!(datos.Lector["nombre"] is DBNull))
                         usuario.Nombre = (string)datos.Lector["nombre"];
                     if (!(datos.Lector["apellido"] is DBNull))
@@ -67,7 +63,7 @@ namespace negocio
             //{
             //    throw ex;  // Relanza la excepción, pero puede perder información de la pila de llamadas
             //}
-            finally // Cierro la conexión acá y no en AccesoDatos ejecutarLectura(), porque necesito que siga abierta para que continue leyendo mientras se este ejecuntando listarConSP()
+            finally // Cierro la conexión al finalizar el método.
             {
                 datos.cerrarConexion();
             }
@@ -89,7 +85,7 @@ namespace negocio
             //{
             //    throw ex;  // Relanza la excepción, pero puede perder información de la pila de llamadas
             //}
-            finally // Cierro la conexión acá y no en AccesoDatos ejecutarLectura(), porque necesito que siga abierta para que continue leyendo mientras se este ejecuntando este metodo.
+            finally // Cierro la conexión al finalizar el método.
             {
                 datos.cerrarConexion();
             }

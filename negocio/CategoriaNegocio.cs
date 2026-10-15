@@ -32,7 +32,7 @@ namespace negocio
             //{
             //    throw ex;  // Relanza la excepción, pero puede perder información de la pila de llamadas
             //}
-            finally // Cierro la conexión acá y no en AccesoDatos ejecutarLectura(), porque necesito que siga abierta para que continue leyendo mientras se este ejecuntando este metodo.
+            finally // Cierro la conexión al finalizar el método.
             {
                 datos.cerrarConexion();
             }

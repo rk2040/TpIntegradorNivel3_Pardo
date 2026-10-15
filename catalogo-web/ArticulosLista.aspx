@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="ArticulosLista.aspx.cs" Inherits="catalogo_web.ArticulosLista" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -13,9 +15,9 @@
             <asp:Label Text="Buscar" runat="server" />
             <asp:TextBox ID="txtFiltro" AutoPostBack="true" OnTextChanged="txtFiltro_TextChanged" CssClass="form-control" runat="server" />
         </div>
-        <div class="col-6" style="display:flex; flex-direction: column; justify-content:flex-end">
+        <div class="col-6" style="display: flex; flex-direction: column; justify-content: flex-end">
             <div class="mb-3">
-                <asp:CheckBox id="chkAvanzado" Text="Busqueda Avanzada" AutoPostBack="true" OnCheckedChanged="chkAvanzado_CheckedChanged" CssClass="" runat="server" />
+                <asp:CheckBox ID="chkAvanzado" Text="Busqueda Avanzada" AutoPostBack="true" OnCheckedChanged="chkAvanzado_CheckedChanged" CssClass="" runat="server" />
             </div>
         </div>
 
@@ -43,7 +45,7 @@
             <div class="col-3">
                 <div-mb-3>
                     <asp:Label Text="Buscar" runat="server" />
-                    <asp:TextBox ID="txtFiltroAvanzado" CssClass="form-control" runat="server" />
+                    <asp:TextBox ID="txtFiltroAvanzado" AutoPostBack="true" CssClass="form-control" runat="server" />
                 </div-mb-3>
             </div>
         </div>
@@ -54,11 +56,11 @@
                 </div>
             </div>
         </div>
-          <%} %>
+        <%} %>
     </div>
 
     <div class="mb-3">
-        <asp:GridView ID="dgvArticulos" CssClass="table" AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged"  OnPageIndexChanging="dgvArticulos_PageIndexChanging" AllowPaging="true" PageSize="3" runat="server">
+        <asp:GridView ID="dgvArticulos" CssClass="table" AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged" OnPageIndexChanging="dgvArticulos_PageIndexChanging" AllowPaging="true" PageSize="10" runat="server">
 
             <Columns>
                 <asp:BoundField HeaderText="Codigo" DataField="Codigo" />
@@ -69,11 +71,11 @@
                 <asp:BoundField HeaderText="Precio" DataField="Precio" />
                 <asp:TemplateField HeaderText="Accion">
                     <ItemTemplate>
-                        <asp:LinkButton ID="btnVer" Text="Ver" CssClass="btn btn-success " CommandName="Select"  runat="server" />
+                        <asp:LinkButton ID="btnVer" Text="Ver" CssClass="btn btn-success " CommandName="Select" runat="server" />
                     </ItemTemplate>
                 </asp:TemplateField>
                 <%--<asp:CommandField  HeaderText="Ver" ShowSelectButton="true" SelectText="Ver" ControlStyle-CssClass="btn btn-success " />--%>
-             </Columns>
+            </Columns>
         </asp:GridView>
         <asp:HyperLink NavigateUrl="FormularioArticulo.aspx" ID="btnAgregar" Text="Agregar" CssClass="btn btn-primary" runat="server" />
     </div>
