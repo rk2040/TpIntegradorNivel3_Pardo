@@ -6,21 +6,21 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
-    .card-img-container {
-        width: 100%;
-        height: 200px;         /* Cambio según qué tan alta quiero la foto */
-        overflow: hidden;      
-        background-color: #f0f0f0; 
-    }
+        .card-img-container {
+            width: 100%;
+            height: 200px; /* Cambio según qué tan alta quiero la foto */
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
 
-    .card-img-container img {
-        width: 100% !important;
-        height: 100% !important;
-        display: block;
-        object-fit: contain; /* Ajusta la imagen a su contenedor (ya no muestra solo una parte de la imagen grande) */
-        object-position: center; /* Centra la imagen */ 
-    }
-</style>
+            .card-img-container img {
+                width: 100% !important;
+                height: 100% !important;
+                display: block;
+                object-fit: contain; /* Ajusta la imagen a su contenedor (ya no muestra solo una parte de la imagen grande) */
+                object-position: center; /* Centra la imagen */
+            }
+    </style>
 
 
     <h3>Soy Default</h3>
@@ -42,6 +42,6 @@
                 </div>
             </div>
         </div>
-            <%} %>
+        <%} %>
     </div>
 </asp:Content>

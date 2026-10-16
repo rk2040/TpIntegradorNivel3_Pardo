@@ -3,8 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .card-img-container {
-            width: 100%;
-            height: auto; /* Cambio según qué tan alta quiero la foto */
+            max-width: 500px;
+            width:auto;
+            height: 400px; /* Cambio según qué tan alta quiero la foto */ 
+            object-fit: contain;
             overflow: hidden;
             background-color: #f0f0f0;
         }
@@ -59,6 +61,7 @@
                         <div class="mb-3">
                             <label class="form-label">Imagen Perfil</label>
                             <input type="file" id="txtImagenPerfil" class="form-control" runat="server" />
+                        <label class="form-label" style="font-size: 10px">Formato permitido: JPG. Tamaño máximo: 4 MB.</label>
                         </div>
                     </div>
                     <div class="mb-3 card-img-container">
