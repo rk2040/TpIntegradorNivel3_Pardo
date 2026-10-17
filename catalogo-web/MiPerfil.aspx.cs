@@ -15,22 +15,24 @@ namespace catalogo_web
         {
             try
             {
+                if (!Seguridad.sesionActiva(Session["usuario"]))
+                {
+                    Response.Redirect("Login.aspx", false);
+                    return;
+                }
                 if (!IsPostBack)
                 {
-                    if (Seguridad.sesionActiva(Session["usuario"]))
-                    {
-                        Usuario usuario = (Usuario)Session["usuario"];
-                        // Cargo los datos del usuario que esta en sesion al formulario de perfil
-                        txtEmail.Text = usuario.Email;
-                        txtEmail.ReadOnly = true;
-                        txtNombre.Text = usuario.Nombre;
-                        txtApellido.Text = usuario.Apellido;
-                        if (!string.IsNullOrEmpty(usuario.ImagenPerfil))
-                            imgPerfil.ImageUrl = "~/Images/" + usuario.ImagenPerfil;
-                        else
-                            imgPerfil.ImageUrl = "https://icones.pro/wp-content/uploads/2021/06/icone-d-image-grise.png";
-                        //imgPerfil.ImageUrl = "https://cdn-icons-png.flaticon.com/512/12225/12225935.png";
-                    }
+                    Usuario usuario = (Usuario)Session["usuario"];
+                    // Cargo los datos del usuario que esta en sesion al formulario de perfil
+                    txtEmail.Text = usuario.Email;
+                    txtEmail.ReadOnly = true;
+                    txtNombre.Text = usuario.Nombre;
+                    txtApellido.Text = usuario.Apellido;
+                    if (!string.IsNullOrEmpty(usuario.ImagenPerfil))
+                        imgPerfil.ImageUrl = "~/Images/" + usuario.ImagenPerfil;
+                    else
+                        imgPerfil.ImageUrl = "https://icones.pro/wp-content/uploads/2021/06/icone-d-image-grise.png";
+                    //imgPerfil.ImageUrl = "https://cdn-icons-png.flaticon.com/512/12225/12225935.png";
                 }
             }
             catch (Exception ex)

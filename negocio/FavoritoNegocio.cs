@@ -55,12 +55,13 @@ namespace negocio
         public void agregarFavorito(int idUsuario, int idArticulo)
         {
             AccesoDatos datos = new AccesoDatos();
-            List<Articulo> listaAux = new List<Articulo>();
-            listaAux = listar(idUsuario);
 
             try
             {
-                if (!listaAux.Any(x => x.Id == idArticulo))
+                List<Articulo> listaAux = new List<Articulo>();
+                listaAux = listar(idUsuario);
+
+                if (!esFavorito(idUsuario, idArticulo))
                 {
                     datos.setearConsulta("Insert into FAVORITOS (IdUser, IdArticulo) values (@idUsuario, @idArticulo)");
                     datos.setearParametros("@idUsuario", idUsuario);
@@ -75,10 +76,35 @@ namespace negocio
             finally
             {
                 datos.cerrarConexion();
+            }           
+        }
+
+        public bool esFavorito(int idUsuario, int idArticulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Articulo> listaAux = new List<Articulo>();
+            listaAux = listar(idUsuario);
+
+            return listaAux.Any(x => x.Id == idArticulo); // Si no hay coincidencia devuelve false
+        }
+
+        public void eliminarFavorito(int idUsuario, int idArticulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("DELETE FROM FAVORITOS WHERE idUser = @idUsuario AND idArticulo = @idArticulo");
+                datos.setearParametros("@idUsuario", idUsuario);
+                datos.setearParametros("@idArticulo", idArticulo);
+                datos.ejecutarAccion();
             }
-            
+            catch (Exception ex)
+            {
 
-
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
         }
     }
 }

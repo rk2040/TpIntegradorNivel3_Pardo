@@ -93,7 +93,7 @@
             <div class="mb-3">
                 <asp:Button ID="btnAceptar" Text="Aceptar" CssClass="btn btn-primary"
                     OnClick="btnAceptar_Click" runat="server" />
-                <asp:HyperLink NavigateUrl="ArticulosLista.aspx" Text="Cancelar" CssClass="btn btn-secondary" runat="server" />
+                <asp:HyperLink ID="btnCancelar" NavigateUrl="ArticulosLista.aspx" Text="Cancelar" CssClass="btn btn-secondary" runat="server" />
                 <asp:Button ID="btnEliminar" Text="Eliminar" CssClass="btn btn-danger"
                     OnClick="btnEliminar_Click" runat="server" />
 

@@ -59,8 +59,19 @@
                             <h6 class="card-title"><%#Eval("MarcaTipo") %></h6>
                             <h5 class="card-title"><%#Eval("Nombre") %></h5>
                             <h5 class="card-title">$ <%#Eval("Precio") %></h5>
-                            <%--<p class="card-title"><%#Eval("Descripcion") %></p>--%>
-                            <asp:Button ID="btnFavorito" Text="Favorito" CssClass="btn btn-primary" CommandArgument='<%#Eval("Id") %>' OnCommand="btnFavorito_Command" OnClick="btnFavorito_Click" runat="server" />
+                            <asp:LinkButton ID="btnFavorito"
+                                CssClass='<%#(bool)Eval("EsFavorito") ? "btn btn-primary btn-sm" : "btn btn-outline-danger btn-sm" %>' 
+                                CommandName="Favorito"
+                                CommandArgument='<%#Eval("Id") %>' 
+                                OnCommand="btnFavorito_Command" 
+                                runat="server"> 
+                                <%#(bool)Eval("EsFavorito") ? "❤ Quitar de Favoritos" : "🤍 Agregar a Favoritos" %>
+                            </asp:LinkButton>
+                            <asp:LinkButton Text="Ver Detalle" 
+                                href='FormularioArticulo.aspx?id=<%#Eval("Id") %>'
+                                class="btn btn-success btn-ms"
+                                runat="server" />
+
                         </div>
 
 

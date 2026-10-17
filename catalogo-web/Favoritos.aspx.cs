@@ -13,6 +13,12 @@ namespace catalogo_web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Seguridad.sesionActiva(Session["usuario"]))
+            {
+                Response.Redirect("Login.aspx", false);
+                return;
+            }
+
             if (!IsPostBack)
             {
                 FavoritoNegocio negocio = new FavoritoNegocio();

@@ -15,10 +15,10 @@ namespace catalogo_web
 
         void Application_Error(object sender, EventArgs e)
         {
-            Exception ex = Server.GetLastError();
+            //Exception ex = Server.GetLastError();
 
-            Session.Add("Error", ex.ToString());
-            Server.Transfer("Error.aspx");
+            //Session.Add("Error", ex.ToString());
+            //Server.Transfer("Error.aspx");
         }
     }
 }
