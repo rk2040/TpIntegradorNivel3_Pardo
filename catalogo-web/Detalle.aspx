@@ -52,11 +52,11 @@
             </div>
             <div class="mb-3">
                 <label for="ddlMarca" class="form-label">Marca</label>
-                <asp:DropDownList ID="ddlMarca" CssClass="form-select" ReadOnly="true" runat="server"></asp:DropDownList>
+                <asp:DropDownList ID="ddlMarca" CssClass="form-select" ReadOnly="true" runat="server" Enabled="false" ></asp:DropDownList>
             </div>
             <div class="mb-3">
                 <label for="ddlCategoria" class="form-label">Categoria</label>
-                <asp:DropDownList ID="ddlCategoria" CssClass="form-select" ReadOnly="true" runat="server"></asp:DropDownList>
+                <asp:DropDownList ID="ddlCategoria" CssClass="form-select" ReadOnly="true" runat="server" Enabled="false" ></asp:DropDownList>
             </div>
             <div class="mb-3">
                 <label for="txtPrecio" class="form-label">Precio</label>
@@ -76,7 +76,9 @@
                         <label for="txtUrlImagen" class="form-label">Imagen</label>
                     </div>
                     <div class="card-img-container">
-                        <asp:Image ID="imgArticulo" ImageUrl="https://media.istockphoto.com/id/1128826884/es/vector/ning%C3%BAn-s%C3%ADmbolo-de-vector-de-imagen-falta-icono-disponible-no-hay-galer%C3%ADa-para-este-momento.jpg?s=612x612&w=0&k=20&c=9vnjI4XI3XQC0VHfuDePO7vNJE7WDM8uzQmZJ1SnQgk="  runat="server" />
+                        <asp:Image ID="imgArticulo" 
+                            ImageUrl="https://media.istockphoto.com/id/1128826884/es/vector/ning%C3%BAn-s%C3%ADmbolo-de-vector-de-imagen-falta-icono-disponible-no-hay-galer%C3%ADa-para-este-momento.jpg?s=612x612&w=0&k=20&c=9vnjI4XI3XQC0VHfuDePO7vNJE7WDM8uzQmZJ1SnQgk="
+                            runat="server" />
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>

@@ -60,7 +60,10 @@
     </div>
 
     <div class="mb-3">
-        <asp:GridView ID="dgvArticulos" CssClass="table" AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged" OnPageIndexChanging="dgvArticulos_PageIndexChanging" AllowPaging="true" PageSize="10" runat="server">
+        <asp:GridView ID="dgvArticulos" CssClass="table" AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged"
+          OnRowCommand="dgvArticulos_RowCommand"  
+          OnPageIndexChanging="dgvArticulos_PageIndexChanging" 
+          AllowPaging="true" PageSize="10" runat="server">
 
             <Columns>
                 <asp:BoundField HeaderText="Codigo" DataField="Codigo" />
@@ -71,7 +74,22 @@
                 <asp:BoundField HeaderText="Precio" DataField="Precio" />
                 <asp:TemplateField HeaderText="Accion">
                     <ItemTemplate>
-                        <asp:LinkButton ID="btnVer" Text="Ver" CssClass="btn btn-success " CommandName="Select" runat="server" />
+                        <asp:LinkButton ID="btnFavorito"
+                            CssClass='<%#(bool)Eval("EsFavorito") ? "btn btn-primary btn-sm" : "btn btn-outline-danger btn-sm" %>'
+                            CommandName="Favorito" 
+                            CommandArgument='<%#Eval("Id") %>'
+                            runat="server" >
+                            <%#(bool)Eval("EsFavorito") ? "❤ Quitar de Favoritos" : "🤍 Agregar a Favoritos" %>
+                        </asp:LinkButton>
+                    </ItemTemplate>
+                     </asp:TemplateField>
+                <asp:TemplateField HeaderText="Editar">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="btnVer" 
+                            Text="Ver" 
+                            CssClass="btn btn-success " 
+                            CommandName="Select" 
+                            runat="server" />
                     </ItemTemplate>
                 </asp:TemplateField>
                 <%--<asp:CommandField  HeaderText="Ver" ShowSelectButton="true" SelectText="Ver" ControlStyle-CssClass="btn btn-success " />--%>

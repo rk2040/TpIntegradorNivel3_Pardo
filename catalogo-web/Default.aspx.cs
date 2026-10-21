@@ -29,7 +29,8 @@ namespace catalogo_web
 
             if (!IsPostBack)
             {
-                repRepetido.DataSource = ListaArticulos; 
+                Session.Add("listaArticulos", ListaArticulos);
+                repRepetido.DataSource = Session["listaArticulos"]; 
                 repRepetido.DataBind();
             }
         }
@@ -58,7 +59,13 @@ namespace catalogo_web
             else // Si no es Favorito el boton entra en modo "Quitar de Favoritos"
                 negocio.eliminarFavorito(usuario.Id, idSeleccionado);
 
-            Response.Redirect("Favoritos.aspx");
+            FavoritoNegocio favNegocio = new FavoritoNegocio();
+            foreach (var articulo in ListaArticulos)
+                articulo.EsFavorito = favNegocio.esFavorito(usuario.Id, articulo.Id);
+
+            Session.Add("listaArticulos", ListaArticulos); // Actualizo datos en la Session
+            repRepetido.DataSource = Session["listaArticulos"];
+            repRepetido.DataBind();
         }
     }
 }

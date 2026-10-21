@@ -67,8 +67,8 @@
                                 runat="server"> 
                                 <%#(bool)Eval("EsFavorito") ? "❤ Quitar de Favoritos" : "🤍 Agregar a Favoritos" %>
                             </asp:LinkButton>
-                            <asp:LinkButton Text="Ver Detalle" 
-                                href='FormularioArticulo.aspx?id=<%#Eval("Id") %>'
+                            <asp:HyperLink Text="Ver Detalle" 
+                                NavigateUrl='<%# "Detalle.aspx?id=" + Eval("Id") %>'
                                 class="btn btn-success btn-ms"
                                 runat="server" />
 
