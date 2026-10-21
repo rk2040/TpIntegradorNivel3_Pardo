@@ -64,7 +64,8 @@
             </div>
 
             <div class="mb-3">
-                <asp:HyperLink ID="btnVolver" NavigateUrl="Default.aspx" Text="Volver" CssClass="btn btn-secondary" runat="server" />
+                <asp:LinkButton ID="btnVolver" Text="Volver" CssClass="btn btn-secondary"
+                    OnClick="btnVolver_Click" runat="server" />
             </div>
         </div>
 

@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="ArticulosLista.aspx.cs" Inherits="catalogo_web.ArticulosLista" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -61,9 +60,9 @@
 
     <div class="mb-3">
         <asp:GridView ID="dgvArticulos" CssClass="table" AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged"
-          OnRowCommand="dgvArticulos_RowCommand"  
-          OnPageIndexChanging="dgvArticulos_PageIndexChanging" 
-          AllowPaging="true" PageSize="10" runat="server">
+            OnRowCommand="dgvArticulos_RowCommand"
+            OnPageIndexChanging="dgvArticulos_PageIndexChanging"
+            AllowPaging="true" PageSize="10" runat="server">
 
             <Columns>
                 <asp:BoundField HeaderText="Codigo" DataField="Codigo" />
@@ -76,19 +75,23 @@
                     <ItemTemplate>
                         <asp:LinkButton ID="btnFavorito"
                             CssClass='<%#(bool)Eval("EsFavorito") ? "btn btn-primary btn-sm" : "btn btn-outline-danger btn-sm" %>'
-                            CommandName="Favorito" 
+                            CommandName="Favorito"
                             CommandArgument='<%#Eval("Id") %>'
-                            runat="server" >
+                            runat="server">
                             <%#(bool)Eval("EsFavorito") ? "❤ Quitar de Favoritos" : "🤍 Agregar a Favoritos" %>
                         </asp:LinkButton>
+                        <asp:HyperLink Text="Ver Detalle"
+                            NavigateUrl='<%# "Detalle.aspx?id=" + Eval("Id") + "&origen=grid" %>'
+                            class="btn btn-success btn-ms"
+                            runat="server" />
                     </ItemTemplate>
-                     </asp:TemplateField>
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="Editar">
                     <ItemTemplate>
-                        <asp:LinkButton ID="btnVer" 
-                            Text="Ver" 
-                            CssClass="btn btn-success " 
-                            CommandName="Select" 
+                        <asp:LinkButton ID="btnVer"
+                            Text="Modificar/Eliminar"
+                            CssClass="btn btn-danger "
+                            CommandName="Select"
                             runat="server" />
                     </ItemTemplate>
                 </asp:TemplateField>

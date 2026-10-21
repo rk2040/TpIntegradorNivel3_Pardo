@@ -98,9 +98,21 @@ namespace catalogo_web
         {
             try
             {
-                ArticuloNegocio negocio = new ArticuloNegocio();
-                dgvArticulos.DataSource = negocio.filtrar(ddlCampo.SelectedItem.ToString(), ddlCriterio.SelectedItem.ToString(), txtFiltroAvanzado.Text);
 
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                List<Articulo> listaFiltrada = negocio.filtrar(ddlCampo.SelectedItem.ToString(), ddlCriterio.SelectedItem.ToString(), txtFiltroAvanzado.Text);
+
+                if (Session["usuario"] != null)
+                {
+                    Usuario usuario = (Usuario)Session["usuario"];
+                    FavoritoNegocio favNegocio = new FavoritoNegocio();
+
+                    foreach (var articulo in listaFiltrada)
+                    {
+                        articulo.EsFavorito = favNegocio.esFavorito(usuario.Id, articulo.Id);
+                    }
+                }
+                dgvArticulos.DataSource = listaFiltrada;
                 dgvArticulos.DataBind();
             }
             catch (Exception ex)
@@ -113,6 +125,10 @@ namespace catalogo_web
         // Agregado para los botones de Favorito y Detalle
         protected void dgvArticulos_RowCommand(object sender, GridViewCommandEventArgs e) 
         {
+            // Compuebo para que no entre el boton editar que tiene commandName = "Select"
+            if (e.CommandName != "Favorito")
+                return;
+
             if (Session["usuario"] == null)
             {
                 Response.Redirect("Login.aspx", false);

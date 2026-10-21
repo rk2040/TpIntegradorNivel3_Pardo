@@ -71,5 +71,16 @@ namespace catalogo_web
                 Response.Redirect("Error.aspx", false);
             }
         }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            // Traigo el dato del html para saber a que page volver
+            string origen = Request.QueryString["origen"];
+
+            if (origen == "grid")
+                Response.Redirect("ArticulosLista.aspx", false); 
+            else
+                Response.Redirect("Default.aspx", false);
+        }
     }
 }
