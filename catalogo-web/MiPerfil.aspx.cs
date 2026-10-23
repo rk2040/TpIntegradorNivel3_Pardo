@@ -20,6 +20,10 @@ namespace catalogo_web
                     Response.Redirect("Login.aspx", false);
                     return;
                 }
+
+                if (!Seguridad.esAdmin(Session["usuario"]))
+                    btnListaUsuarios.Visible = false;
+
                 if (!IsPostBack)
                 {
                     Usuario usuario = (Usuario)Session["usuario"];

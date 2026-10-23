@@ -26,7 +26,10 @@
                             <a class="nav-link" href="ArticulosLista.aspx">Lista de Articulos</a>
                             <a class="nav-link" href="MiPerfil.aspx">Mi Perfil</a>
                             <a class="nav-link" href="Favoritos.aspx">Favoritos</a>
-                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                            <%if (negocio.Seguridad.esAdmin(Session["usuario"]))
+                              { %> 
+                            <a class="nav-link" href="ListaUsuarios.aspx">Panel de Usuarios</a>                            
+                            <%}%>
                         </div>
                     </div>
 
@@ -34,8 +37,8 @@
                         
                         <%if (!negocio.Seguridad.sesionActiva(Session["usuario"]))
     { %>
-                        <<asp:HyperLink href="Login.aspx" CssClass="btn btn-primary mx-1" runat="server">Login</asp:HyperLink>
-                        <<asp:HyperLink href="Registro.aspx" CssClass="btn btn-outline-danger  mx-1" runat="server">Registrarse</asp:HyperLink>
+                        <asp:HyperLink href="Login.aspx" CssClass="btn btn-primary mx-1" runat="server">Login</asp:HyperLink>
+                        <asp:HyperLink href="Registro.aspx" CssClass="btn btn-outline-danger  mx-1" runat="server">Registrarse</asp:HyperLink>
                         <%  } %>
                         <%else
     { %>

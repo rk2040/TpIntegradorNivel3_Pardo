@@ -26,9 +26,6 @@
         /*}*/
     </style>
 
-
-    <h3>Soy Default</h3>
-
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <%--<%foreach (dominio.Articulo articulo in ListaArticulos)
             { %>

@@ -4,8 +4,8 @@
     <style>
         .card-img-container {
             max-width: 500px;
-            width:auto;
-            height: 400px; /* Cambio según qué tan alta quiero la foto */ 
+            width: auto;
+            height: 400px; /* Cambio según qué tan alta quiero la foto */
             object-fit: contain;
             overflow: hidden;
             background-color: #f0f0f0;
@@ -51,6 +51,10 @@
                 <asp:Button Text="Guardar" ID="btnGuardar" CssClass="btn btn-primary m-1" OnClick="btnGuardar_Click" runat="server" />
                 <asp:HyperLink NavigateUrl="/" Text="Cancelar" CssClass="btn btn-danger m-1" runat="server" />
             </div>
+            <div >
+                <asp:HyperLink ID="btnListaUsuarios" NavigateUrl="ListaUsuarios.aspx" runat="server"
+                    Text="Ver Lista de Usuarios" CssClass="btn btn-success" style="margin-top:5%" />
+            </div>
         </div>
 
         <div class="col-md-6">
@@ -61,7 +65,7 @@
                         <div class="mb-3">
                             <label class="form-label">Imagen Perfil</label>
                             <input type="file" id="txtImagenPerfil" class="form-control" runat="server" />
-                        <label class="form-label" style="font-size: 10px">Formato permitido: JPG. Tamaño máximo: 4 MB.</label>
+                            <label class="form-label" style="font-size: 10px">Formato permitido: JPG. Tamaño máximo: 4 MB.</label>
                         </div>
                     </div>
                     <div class="mb-3 card-img-container">
