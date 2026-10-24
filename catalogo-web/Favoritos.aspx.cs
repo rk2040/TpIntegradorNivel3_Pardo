@@ -35,5 +35,26 @@ namespace catalogo_web
             dgvFavoritos.DataSource = Session["listaFavoritos"];
             dgvFavoritos.DataBind();
         }
+
+        protected void dgvFavoritos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            // Compuebo para que no entre el boton editar que tiene commandName = "Select"
+            if (e.CommandName != "Favorito")
+                return;
+
+            if (Session["usuario"] == null)
+            {
+                Response.Redirect("Login.aspx", false);
+                return;
+            }
+            FavoritoNegocio negocio = new FavoritoNegocio();
+            Usuario usuario = (Usuario)Session["usuario"];
+            int idSeleccionado = Convert.ToInt32(e.CommandArgument);
+
+            negocio.eliminarFavorito(usuario.Id, idSeleccionado);
+
+            dgvFavoritos.DataSource = negocio.listar(usuario.Id); // Actualizo la lista desde la BD
+            dgvFavoritos.DataBind();
+        }
     }
 }

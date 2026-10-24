@@ -13,7 +13,8 @@
 
     <div class="mb-3">
         <asp:GridView ID="dgvFavoritos" CssClass="table" AutoGenerateColumns="false" DataKeyNames="Id"
-            OnPageIndexChanging="dgvFavoritos_PageIndexChanging" AllowPaging="true" PageSize="10" runat="server">
+            OnPageIndexChanging="dgvFavoritos_PageIndexChanging" AllowPaging="true" PageSize="10" 
+            OnRowCommand="dgvFavoritos_RowCommand" runat="server">
 
             <Columns>
                 <asp:BoundField HeaderText="Codigo" DataField="Codigo" />
@@ -25,8 +26,16 @@
                 <asp:TemplateField HeaderText="Accion">
                     <ItemTemplate>
                         <asp:HyperLink ID="btnVer" NavigateUrl='<%# "Detalle.aspx?id=" + Eval("Id") + "&origen=favorito"  %>'
-                            Text="Ver Detalle" CssClass="btn btn-success "
+                            Text="Ver Detalle" 
+                            CssClass="btn btn-success btn-sm"
                             runat="server" />
+                        <asp:LinkButton ID="btnFavorito"
+                            CssClass="btn btn-primary btn-sm"
+                            CommandName="Favorito"
+                            CommandArgument='<%#Eval("Id") %>'
+                            runat="server">
+                            ❤ Quitar de Favoritos
+                        </asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <%--<asp:CommandField  HeaderText="Ver" ShowSelectButton="true" SelectText="Ver" ControlStyle-CssClass="btn btn-success " />--%>

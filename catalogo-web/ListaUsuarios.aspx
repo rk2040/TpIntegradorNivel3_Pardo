@@ -5,6 +5,9 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <%-- Requerido para usar Update Panel --%>
+    <asp:ScriptManager ID="ScripManager1" runat="server" />
+
     <div class="bg-body-tertiary text-white rounded-3 p-4 mb-4 shadow-sm border border-secondary">
         <div class="container-fluid py-2">
             <h2 class="fw-bold">Lista de Usuarios</h2>
@@ -36,6 +39,21 @@
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
+        <%-- Aca poner panel control para confirmar cambioPermisoAdmin --%>
+        <div class="mb-3">
+            <asp:UpdatePanel ID="upConfirmaAdmin" runat="server">
+                <ContentTemplate>
+                    <%if (CambioAdmin)
+                        {%>
+                    <%--<asp:CheckBox ID="chkConfirmaEliminacion" Text=" Confirmar Eliminación " runat="server" />--%>
+                    <asp:Label ID="lblConfirmaAdmin" class="form-label text-danger" runat="server" >Estas por perder los permisos de Administrador. ¿Queres continuar?</asp:Label>
+                    <asp:Button ID="btnConfirmaAdmin" Text="Aceptar" CssClass="btn btn-primary m-2" OnClick="btnConfirmaAdmin_Click" runat="server" />
+                    <asp:Button ID="btnCancelarAdmin" Text="Cancelar" CssClass="btn btn-secondary m-2" OnClick="btnCancelarAdmin_Click" runat="server" />
+                    <%}%>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
+
         <asp:HyperLink ID="hlkIrHome" Text="ir a Home" NavigateUrl="Default.aspx" CssClass="btn btn-primary me-2" runat="server" />
         <asp:HyperLink ID="hlkVolver" Text="Volver a Perfil" NavigateUrl="MiPerfil.aspx" CssClass="btn btn-secondary me-2" runat="server" />
     </div>
