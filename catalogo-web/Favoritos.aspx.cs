@@ -29,11 +29,6 @@ namespace catalogo_web
             }
         }
 
-        protected void dgvFavoritos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         protected void dgvFavoritos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvFavoritos.PageIndex = e.NewPageIndex;

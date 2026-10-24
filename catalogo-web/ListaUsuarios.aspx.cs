@@ -22,19 +22,18 @@ namespace catalogo_web
             }
 
             if (!IsPostBack)
-            {
                 cargarListaUsuarios();
-            }
         }
 
         protected void dgvListaUsuarios_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if(e.CommandName == "CambiarAdmin")
+            if (e.CommandName == "CambiarAdmin")
             {
                 try
                 {
+                    Usuario usuarioLogueado = (Usuario)Session["usuario"]; // Para poder actualizarlo luego
                     int idUsuario = Convert.ToInt32(e.CommandArgument); // Campturo el id desde el html del CommandArgument
-                    if(idUsuario == 1)
+                    if (idUsuario == 1)
                     {
                         Session.Add("Error", "No se puede cambiar el permiso de Admin al Usuario Admin original.");
                         Response.Redirect("Error.aspx");
@@ -43,6 +42,13 @@ namespace catalogo_web
 
                     UsuarioNegocio negocio = new UsuarioNegocio();
                     negocio.cambiarPermisosAdmin(idUsuario);
+
+                    bool nuevoEstadoAdmin = !usuarioLogueado.Admin;
+                    if (usuarioLogueado.Id == idUsuario) // Esta parte es solo para actualizar Session en el caso de que uno quiera auto cambiarse el estado de admin
+                    {
+                        usuarioLogueado.Admin = nuevoEstadoAdmin;
+                        Session["usuario"] = usuarioLogueado;
+                    }
                     cargarListaUsuarios();
 
                 }
@@ -67,5 +73,6 @@ namespace catalogo_web
             dgvListaUsuarios.DataSource = listaDeUsuarios;
             dgvListaUsuarios.DataBind();
         }
+
     }
 }

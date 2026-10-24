@@ -23,20 +23,6 @@
             font-size: 15px;
         }
     </style>
-    <%--<script>
-    function validar(){ 
-        //Captura el control
-        const txtApellido = document.getElementById("txtPrecio");
-        if (txtPrecio.value == "")
-        {
-            txtPrecio.classList.add("is-invalid");                
-            return false;
-        }
-        return true;
-        txtPrecio.classList.remove("is-invalid");
-    }
-
-    </script>--%>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -44,7 +30,12 @@
     <%-- Requerido para usar Update Panel --%>
     <asp:ScriptManager ID="ScripManager1" runat="server" />
 
-    <h3>Formulario de Articulo</h3>
+    <div class="bg-body-tertiary text-white rounded-3 p-4 mb-4 shadow-sm border border-secondary">
+        <div class="container-fluid py-2">
+            <h2 class="fw-bold">Formulario de Articulo</h2>
+        </div>
+    </div>
+
     <div class="row">
 
         <div class="col-6">
@@ -121,7 +112,7 @@
                         <asp:TextBox ID="txtUrlImagen" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtUrlImagen_TextChanged" runat="server" />
                     </div>
                     <div class="card-img-container">
-                        <asp:Image ID="imgArticulo" ImageUrl="https://media.istockphoto.com/id/1128826884/es/vector/ning%C3%BAn-s%C3%ADmbolo-de-vector-de-imagen-falta-icono-disponible-no-hay-galer%C3%ADa-para-este-momento.jpg?s=612x612&w=0&k=20&c=9vnjI4XI3XQC0VHfuDePO7vNJE7WDM8uzQmZJ1SnQgk="  runat="server" />
+                        <asp:Image ID="imgArticulo" ImageUrl="https://media.istockphoto.com/id/1128826884/es/vector/ning%C3%BAn-s%C3%ADmbolo-de-vector-de-imagen-falta-icono-disponible-no-hay-galer%C3%ADa-para-este-momento.jpg?s=612x612&w=0&k=20&c=9vnjI4XI3XQC0VHfuDePO7vNJE7WDM8uzQmZJ1SnQgk=" runat="server" />
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>

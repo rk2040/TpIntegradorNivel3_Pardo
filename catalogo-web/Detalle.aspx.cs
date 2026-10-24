@@ -77,8 +77,11 @@ namespace catalogo_web
             // Traigo el dato del html para saber a que page volver
             string origen = Request.QueryString["origen"];
 
+            // Probando como volver a distintas pages sin usar codigo Js en el html: OnClientClick="javascript:history.back(); return false;"
             if (origen == "grid")
-                Response.Redirect("ArticulosLista.aspx", false); 
+                Response.Redirect("ArticulosLista.aspx", false);
+            else if (origen == "favorito")
+                Response.Redirect("Favoritos.aspx", false);
             else
                 Response.Redirect("Default.aspx", false);
         }

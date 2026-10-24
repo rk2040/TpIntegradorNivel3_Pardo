@@ -29,7 +29,11 @@
     <%-- Requerido para usar Update Panel --%>
     <asp:ScriptManager ID="ScripManager1" runat="server" />
 
-    <h3>Registro</h3>
+    <div class="bg-body-tertiary text-white rounded-3 p-4 mb-4 shadow-sm border border-secondary">
+        <div class="container-fluid py-2">
+            <h2 class="fw-bold">Registro</h2>
+        </div>
+    </div>
 
     <div class="row">
 
@@ -48,7 +52,7 @@
                 <asp:RegularExpressionValidator ID="revEmail" CssClass="validator"
                     ControlToValidate="txtEmail"
                     ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
-                    ErrorMessage="El formato de email no es valido." 
+                    ErrorMessage="El formato de email no es valido."
                     runat="server" />
             </div>
             <div class="mb-3">

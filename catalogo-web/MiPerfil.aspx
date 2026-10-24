@@ -23,7 +23,11 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <h3>Mi Perfil</h3>
+    <div class="bg-body-tertiary text-white rounded-3 p-4 mb-4 shadow-sm border border-secondary">
+        <div class="container-fluid py-2">
+            <h2 class="fw-bold">Mi Perfil</h2>
+        </div>
+    </div>
 
     <%-- Requerido para usar Update Panel --%>
     <asp:ScriptManager ID="ScripManager1" runat="server" />
@@ -51,9 +55,9 @@
                 <asp:Button Text="Guardar" ID="btnGuardar" CssClass="btn btn-primary m-1" OnClick="btnGuardar_Click" runat="server" />
                 <asp:HyperLink NavigateUrl="/" Text="Cancelar" CssClass="btn btn-danger m-1" runat="server" />
             </div>
-            <div >
-                <asp:HyperLink ID="btnListaUsuarios" NavigateUrl="ListaUsuarios.aspx" runat="server"
-                    Text="Ver Lista de Usuarios" CssClass="btn btn-success" style="margin-top:5%" />
+            <div>
+                <asp:HyperLink ID="btnListaUsuarios" NavigateUrl="ListaUsuarios.aspx?&origen=miPerfil" runat="server"
+                    Text="Ver Lista de Usuarios" CssClass="btn btn-success" Style="margin-top: 5%" />
             </div>
         </div>
 

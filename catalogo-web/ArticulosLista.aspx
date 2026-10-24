@@ -7,7 +7,11 @@
 
     <asp:ScriptManager runat="server" />
 
-    <h3>Lista de Articulos</h3>
+    <div class="bg-body-tertiary text-white rounded-3 p-4 mb-4 shadow-sm border border-secondary">
+        <div class="container-fluid py-2">
+            <h2 class="fw-bold">Lista de Articulos</h2>
+        </div>
+    </div>
 
     <div class="col-6">
         <div class="mb-3">
@@ -62,7 +66,7 @@
         <asp:GridView ID="dgvArticulos" CssClass="table" AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged"
             OnRowCommand="dgvArticulos_RowCommand"
             OnPageIndexChanging="dgvArticulos_PageIndexChanging"
-            AllowPaging="true" PageSize="10" runat="server">
+            AllowPaging="true" PageSize="5" runat="server">
 
             <Columns>
                 <asp:BoundField HeaderText="Codigo" DataField="Codigo" />

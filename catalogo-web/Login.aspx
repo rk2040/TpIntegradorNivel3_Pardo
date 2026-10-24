@@ -11,9 +11,14 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <div class="bg-body-tertiary text-white rounded-3 p-4 mb-4 shadow-sm border border-secondary">
+        <div class="container-fluid py-2">
+            <h2 class="fw-bold">Login</h2>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-6">
-            <h3>Login</h3>
             <div class="mb-3">
                 <label class="form-label">Email</label>
                 <asp:TextBox ID="txtEmail" CssClass="form-control" Required="true" runat="server" />

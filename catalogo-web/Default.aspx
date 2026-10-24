@@ -26,30 +26,22 @@
         /*}*/
     </style>
 
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <%--<%foreach (dominio.Articulo articulo in ListaArticulos)
-            { %>
-        <div class="col">
-            <div class="card h-100">
-                <div class="card-img-container">
-                    <img src="<%: articulo.ImagenUrl %>" class="card-img-top" alt="Imagen de <%: articulo.Nombre %>">
-                </div>
-                <div class="card-body">
-                    <h6 class="card-title"><%: articulo.MarcaTipo %></h6>
-                    <h5 class="card-title"><%: articulo.Nombre %></h5>
-                    <h6 class="card-title"><%: articulo.CategoriaTipo %></h6>
-                    <h5 class="card-title">$ <%: articulo.Precio %></h5>
-                    <p class="card-text"><%: articulo.Descripcion %></p>
-                </div>
-            </div>
+    <div class="bg-body-tertiary text-white rounded-3 p-4 mb-4 shadow-sm border border-secondary">
+        <div class="container-fluid py-2">
+            <h1 class="display-5 fw-bold">¡Bienvenido a Catalogo-web!</h1>
+            <p class="col-md-8 fs-5 text-light">
+                Explorá nuestro catálogo de artículos, gestioná tus favoritos y encontrá las mejores ofertas en tecnología.
+            </p>
         </div>
-        <%} %>--%>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
 
         <asp:Repeater ID="repRepetido" runat="server">
             <ItemTemplate>
                 <div class="col">
                     <div class="card">
-                        <img src="<%#Eval("ImagenUrl") %>" class="card-img-container" alt="Imagen de: <%#Eval("Nombre") %>" />
+                        <img src="<%#Eval("ImagenUrl") %>" class="card-img-container text-dark" alt="Imagen de: <%#Eval("Nombre") %>" />
 
                         <div class="card-body">
                             <h6 class="card-title"><%#Eval("CategoriaTipo") %></h6>
@@ -57,14 +49,14 @@
                             <h5 class="card-title"><%#Eval("Nombre") %></h5>
                             <h5 class="card-title">$ <%#Eval("Precio") %></h5>
                             <asp:LinkButton ID="btnFavorito"
-                                CssClass='<%#(bool)Eval("EsFavorito") ? "btn btn-primary btn-sm" : "btn btn-outline-danger btn-sm" %>' 
+                                CssClass='<%#(bool)Eval("EsFavorito") ? "btn btn-primary btn-sm" : "btn btn-outline-danger btn-sm" %>'
                                 CommandName="Favorito"
-                                CommandArgument='<%#Eval("Id") %>' 
-                                OnCommand="btnFavorito_Command" 
+                                CommandArgument='<%#Eval("Id") %>'
+                                OnCommand="btnFavorito_Command"
                                 runat="server"> 
                                 <%#(bool)Eval("EsFavorito") ? "❤ Quitar de Favoritos" : "🤍 Agregar a Favoritos" %>
                             </asp:LinkButton>
-                            <asp:HyperLink Text="Ver Detalle" 
+                            <asp:HyperLink Text="Ver Detalle"
                                 NavigateUrl='<%# "Detalle.aspx?id=" + Eval("Id") + "&origen=default" %>'
                                 class="btn btn-success btn-ms"
                                 runat="server" />

@@ -5,7 +5,11 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <h3>Lista de Usuarios</h3>
+    <div class="bg-body-tertiary text-white rounded-3 p-4 mb-4 shadow-sm border border-secondary">
+        <div class="container-fluid py-2">
+            <h2 class="fw-bold">Lista de Usuarios</h2>
+        </div>
+    </div>
 
     <div class="mb-3">
         <asp:GridView ID="dgvListaUsuarios" CssClass="table" runat="server"
@@ -32,7 +36,8 @@
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
-        <asp:Button  ID="btnVolver" Text="Volver" CssClass="btn btn-secondary me-2" runat="server" OnClientClick="javascript:history.back(); return false;" />
+        <asp:HyperLink ID="hlkIrHome" Text="ir a Home" NavigateUrl="Default.aspx" CssClass="btn btn-primary me-2" runat="server" />
+        <asp:HyperLink ID="hlkVolver" Text="Volver a Perfil" NavigateUrl="MiPerfil.aspx" CssClass="btn btn-secondary me-2" runat="server" />
     </div>
 
 </asp:Content>
