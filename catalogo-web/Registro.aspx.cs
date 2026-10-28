@@ -31,6 +31,7 @@ namespace catalogo_web
                 Usuario usuario = new Usuario();
                 UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
                 // Agregar la parte de enviar email
+                EmailService emailService = new EmailService();
                 //usuario.Id = int.Parse(txtId.Text);
                 usuario.Email = txtEmail.Text;
                 usuario.Pass = txtPassword.Text;
@@ -43,6 +44,8 @@ namespace catalogo_web
                 Session.Add("usuario", usuario); // Con esto dejo iniciada la Session (Logueado) cuando se registra
 
                 // Hacer la parte de enviar email automatico de bienvenida ACÁ
+                emailService.armarCorreo(usuario.Email, "Registro exitoso al catalogo-web", "<h1> Bienvenido al nuevo Catalogo-web</h1> <br/><br/><h3>Te damos la bienvenida y te dejamos tus datos de acceso a continuación:</h3><br/><br/>Usuario: " + usuario.Email + "<br/>Contraseña: " + usuario.Pass + "<br/><br/>Recuenda no darle esta información a nadie.<br/>Te damos la bienvenida y gracias por elegirnos.");
+                emailService.enviarEmail();
 
                 Response.Redirect("Default.aspx", false);
             }
