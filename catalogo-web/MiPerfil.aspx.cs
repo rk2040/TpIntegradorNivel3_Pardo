@@ -41,8 +41,7 @@ namespace catalogo_web
             }
             catch (Exception ex)
             {
-
-                Session.Add("Error", Seguridad.manejoError(ex));
+                Session.Add("Error", Seguridad.manejoError("MiPerfil_Page_Load", ex));
                 Response.Redirect("Error.aspx", false);
             }
         }
@@ -57,7 +56,7 @@ namespace catalogo_web
                 UsuarioNegocio negocio = new UsuarioNegocio();
                 Usuario usuario = (Usuario)Session["usuario"];
                 // Para escribir la ruta de la img si se carga algo
-                if (txtImagenPerfil.PostedFile.FileName != "")
+                if (txtImagenPerfil.PostedFile != null && !string.IsNullOrEmpty(txtImagenPerfil.PostedFile.FileName))
                 {
                     string ruta = Server.MapPath("./Images/");
                     txtImagenPerfil.PostedFile.SaveAs(ruta + "perfil-" + usuario.Id + ".jpg");
@@ -78,8 +77,7 @@ namespace catalogo_web
             }
             catch (Exception ex)
             {
-
-                Session.Add("Error", Seguridad.manejoError(ex));
+                Session.Add("Error",Seguridad.manejoError("MiPerfil_btnGuardar_Click", ex));
                 Response.Redirect("Error.aspx", false);
             }
         }

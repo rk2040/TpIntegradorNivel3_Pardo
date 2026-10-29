@@ -46,7 +46,7 @@ namespace negocio
         public static string manejoError(string nombreMetodo, Exception error)
         {
             // Arma el mensaje para el log
-            string mensajeLog = $"[{DateTime.Now}] ERROR EN {nombreMetodo}: {error.Message}\n";
+            string mensajeLog = $"[{DateTime.Now}] ERROR EN {nombreMetodo}: {error.ToString()}\n";
 
             // Traduce la ruta virtual con "~" a una ruta física real de Windows
             string rutaCarpetaErrores = HttpContext.Current.Server.MapPath("~/Errores/");

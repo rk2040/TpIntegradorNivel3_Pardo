@@ -16,46 +16,71 @@ namespace catalogo_web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            ListaArticulos = negocio.listarConSP();
-
-            if (!Seguridad.esAdmin(Session["usuario"]))
+            try
             {
-                btnAgregar.Visible = false;
-                dgvArticulos.Columns[7].Visible = false; //Columna de boton visible solo para admin
-            }
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                ListaArticulos = negocio.listarConSP();
 
-            if (Session["usuario"] != null)
+                if (!Seguridad.esAdmin(Session["usuario"]))
+                {
+                    btnAgregar.Visible = false;
+                    dgvArticulos.Columns[7].Visible = false; //Columna de boton visible solo para admin
+                }
+
+                if (Session["usuario"] != null)
+                {
+                    Usuario usuario = (Usuario)Session["usuario"];
+                    FavoritoNegocio favNegocio = new FavoritoNegocio();
+
+                    // Recorro la lista de art completa y asigno valor favorito a los art de la lista en Session del usuario
+                    foreach (var articulo in ListaArticulos)
+                        articulo.EsFavorito = favNegocio.esFavorito(usuario.Id, articulo.Id);
+                }
+
+                FiltroAvanzado = chkAvanzado.Checked;
+                if (!IsPostBack)
+                {
+                    //ArticuloNegocio negocio = new ArticuloNegocio();
+                    Session.Add("listaArticulos", ListaArticulos);
+                    dgvArticulos.DataSource = Session["listaArticulos"];
+                    dgvArticulos.DataBind();
+                }
+            }
+            catch (Exception ex)
             {
-                Usuario usuario = (Usuario)Session["usuario"];
-                FavoritoNegocio favNegocio = new FavoritoNegocio();
-
-                // Recorro la lista de art completa y asigno valor favorito a los art de la lista en Session del usuario
-                foreach (var articulo in ListaArticulos)
-                    articulo.EsFavorito = favNegocio.esFavorito(usuario.Id, articulo.Id);
+                Session.Add("Error", Seguridad.manejoError("ArticulosLista_Page_Load", ex));
+                Response.Redirect("Error.aspx", false);
             }
-
-            FiltroAvanzado = chkAvanzado.Checked;
-            if (!IsPostBack)
-            {
-                //ArticuloNegocio negocio = new ArticuloNegocio();
-                Session.Add("listaArticulos", ListaArticulos);
-                dgvArticulos.DataSource = Session["listaArticulos"];
-                dgvArticulos.DataBind();
-            }
+            
         }
 
         protected void dgvArticulos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string id = dgvArticulos.SelectedDataKey.Value.ToString();
-            Response.Redirect("FormularioArticulo.aspx?id=" +  id);
+            try
+            {
+                string id = dgvArticulos.SelectedDataKey.Value.ToString();
+                Response.Redirect("FormularioArticulo.aspx?id=" + id);
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", Seguridad.manejoError("ArticulosLista_dgvArticulos_SelectedIndexChange", ex));
+                Response.Redirect("Error.aspx", false);
+            }
         }
 
         protected void dgvArticulos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            dgvArticulos.PageIndex = e.NewPageIndex;
-            dgvArticulos.DataSource = Session["listaArticulos"];
-            dgvArticulos.DataBind();
+            try
+            {
+                dgvArticulos.PageIndex = e.NewPageIndex;
+                dgvArticulos.DataSource = Session["listaArticulos"];
+                dgvArticulos.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", Seguridad.manejoError("ArticulosLista_dgvArticulos_PageIndexChanging", ex));
+                Response.Redirect("Error.aspx", false);
+            }
         }
 
         protected void txtFiltro_TextChanged(object sender, EventArgs e)
@@ -71,13 +96,13 @@ namespace catalogo_web
         }
 
         protected void chkAvanzado_CheckedChanged(object sender, EventArgs e)
-        {
+        { // Sin try catch porque es metodo visual, no toca logica
             FiltroAvanzado = chkAvanzado.Checked;
             txtFiltro.Enabled = !FiltroAvanzado;
         }
 
         protected void ddlCampo_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {   // Sin try catch porque es metodo visual, no toca logica
             // Cargo los ddl de criterio segun lo que seleccione en el ddl campo
             ddlCriterio.Items.Clear();
             if(ddlCampo.SelectedItem.ToString() == "Precio")
@@ -117,7 +142,7 @@ namespace catalogo_web
             }
             catch (Exception ex)
             {
-                Session.Add("Error", Seguridad.manejoError(ex));
+                Session.Add("Error", Seguridad.manejoError("ArticulosLista_btnBuscar_Click", ex));
                 Response.Redirect("Error.aspx", false);
             }
         }
@@ -129,31 +154,39 @@ namespace catalogo_web
             if (e.CommandName != "Favorito")
                 return;
 
-            if (Session["usuario"] == null)
+            try
             {
-                Response.Redirect("Login.aspx", false);
-                return;
+                if (Session["usuario"] == null)
+                {
+                    Response.Redirect("Login.aspx", false);
+                    return;
+                }
+                FavoritoNegocio negocio = new FavoritoNegocio();
+                Usuario usuario = (Usuario)Session["usuario"];
+                int idSeleccionado = Convert.ToInt32(e.CommandArgument);
+
+                // Pregunto si esFavorito
+                bool yaEsFavorito = negocio.esFavorito(usuario.Id, idSeleccionado);
+
+                if (!yaEsFavorito) // Si !NO es favorito, lo agrego
+                    negocio.agregarFavorito(usuario.Id, idSeleccionado);
+
+                else // Si no es Favorito el boton entra en modo "Quitar de Favoritos"
+                    negocio.eliminarFavorito(usuario.Id, idSeleccionado);
+
+                FavoritoNegocio favNegocio = new FavoritoNegocio();
+                foreach (var articulo in ListaArticulos)
+                    articulo.EsFavorito = favNegocio.esFavorito(usuario.Id, articulo.Id);
+
+                Session["listaArticulos"] = ListaArticulos; // Actualizo la lista en Session
+                dgvArticulos.DataSource = Session["listaArticulos"];
+                dgvArticulos.DataBind();
             }
-            FavoritoNegocio negocio = new FavoritoNegocio();
-            Usuario usuario = (Usuario)Session["usuario"];
-            int idSeleccionado = Convert.ToInt32(e.CommandArgument);
-
-            // Pregunto si esFavorito
-            bool yaEsFavorito = negocio.esFavorito(usuario.Id, idSeleccionado);
-
-            if (!yaEsFavorito) // Si !NO es favorito, lo agrego
-                negocio.agregarFavorito(usuario.Id, idSeleccionado);
-
-            else // Si no es Favorito el boton entra en modo "Quitar de Favoritos"
-                negocio.eliminarFavorito(usuario.Id, idSeleccionado);
-
-            FavoritoNegocio favNegocio = new FavoritoNegocio();
-            foreach (var articulo in ListaArticulos)
-                articulo.EsFavorito = favNegocio.esFavorito(usuario.Id, articulo.Id);
-
-            Session["listaArticulos"] = ListaArticulos; // Actualizo la lista en Session
-            dgvArticulos.DataSource = Session["listaArticulos"];
-            dgvArticulos.DataBind();
+            catch (Exception ex)
+            {
+                Session.Add("Error", Seguridad.manejoError("ArticulosLista_dgvArticulos_RowCommand", ex));
+                Response.Redirect("Error.aspx", false);
+            }
         }
     }
 }

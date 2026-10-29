@@ -33,7 +33,7 @@ namespace catalogo_web
             }
             catch (Exception ex)
             {
-                Seguridad.manejoError("Master_Page_Load", ex); // Guardo error en la carpeta errores
+                Session.Add("Error", Seguridad.manejoError("Master_Page_Load", ex)); // Guardo error en la carpeta errores
                 Response.Redirect("Error.aspx", false);
             }
         }
@@ -47,7 +47,7 @@ namespace catalogo_web
             }
             catch (Exception ex)
             {
-                Seguridad.manejoError("Master_btnSalir_Click", ex);
+                Session.Add("Error", Seguridad.manejoError("Master_btnSalir_Click", ex));
                 Response.Redirect("Error.aspx", false);
             }
         }

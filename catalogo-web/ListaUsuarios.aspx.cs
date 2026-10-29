@@ -16,16 +16,24 @@ namespace catalogo_web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Seguridad.esAdmin(Session["usuario"]))
+            try
             {
-                Session.Add("Error", "Necesita permisos de Admin para acceder a esta sección.");
-                Response.Redirect("Error.aspx");
-                return;
-            }
-            CambioAdmin = false;
+                if (!Seguridad.esAdmin(Session["usuario"]))
+                {
+                    Session.Add("Error", "Necesita permisos de Admin para acceder a esta sección.");
+                    Response.Redirect("Error.aspx", false);
+                    return;
+                }
+                CambioAdmin = false;
 
-            if (!IsPostBack)
-                cargarListaUsuarios();
+                if (!IsPostBack)
+                    cargarListaUsuarios();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", Seguridad.manejoError("ListaUsuarios_Page_Load", ex));
+                Response.Redirect("Error.aspx", false);
+            }
         }
 
         protected void dgvListaUsuarios_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -39,7 +47,7 @@ namespace catalogo_web
                     if (idUsuario == 1)
                     {
                         Session.Add("Error", "No se puede cambiar el permiso de Admin al Usuario Admin original.");
-                        Response.Redirect("Error.aspx");
+                        Response.Redirect("Error.aspx", false);
                         return;
                     }
 
@@ -56,37 +64,53 @@ namespace catalogo_web
                 }
                 catch (Exception ex)
                 {
-
-                    throw ex;
+                    Session.Add("Error", Seguridad.manejoError("ListaUsuarios_dgvListaUsuarios_RowCommand", ex));
+                    Response.Redirect("Error.aspx", false);
                 }
             }
         }
 
         protected void btnConfirmaAdmin_Click(object sender, EventArgs e)
         {
-            if (ViewState["idUsuarioACambiar"] != null) 
+            try
             {
-                int idUsuario = Convert.ToInt32(ViewState["idUsuarioACambiar"]);
-                UsuarioNegocio negocio = new UsuarioNegocio();
-                negocio.cambiarPermisosAdmin(idUsuario); // Guardo el cambio en BD
+                if (ViewState["idUsuarioACambiar"] != null)
+                {
+                    int idUsuario = Convert.ToInt32(ViewState["idUsuarioACambiar"]);
+                    UsuarioNegocio negocio = new UsuarioNegocio();
+                    negocio.cambiarPermisosAdmin(idUsuario); // Guardo el cambio en BD
 
-                Usuario usuarioLogueado = (Usuario)Session["usuario"];
-                usuarioLogueado.Admin = !usuarioLogueado.Admin; // Invierte el true/false que tiene de Admin
-                Session["usuario"] = usuarioLogueado; // Actualizo la Session para que el cambio se impacte al instante, sino tendría que salir y volver a loguearse para ver el cambio.
+                    Usuario usuarioLogueado = (Usuario)Session["usuario"];
+                    usuarioLogueado.Admin = !usuarioLogueado.Admin; // Invierte el true/false que tiene de Admin
+                    Session["usuario"] = usuarioLogueado; // Actualizo la Session para que el cambio se impacte al instante, sino tendría que salir y volver a loguearse para ver el cambio.
 
-                CambioAdmin = false; // Vuelvo a ocultar los botones
-                ViewState["idUsuarioACambiar"] = null; // Vuelvo el ViewState a null
-                cargarListaUsuarios(); // Actualizo el grid
-                Response.Redirect("ListaUsuarios.aspx", false); // Para confirmar que ya no tiene permisos de admin
-                Context.ApplicationInstance.CompleteRequest(); // Fuerza una redirección fuera UpdatePanel para refrescar el estado admin
+                    CambioAdmin = false; // Vuelvo a ocultar los botones
+                    ViewState["idUsuarioACambiar"] = null; // Vuelvo el ViewState a null
+                    cargarListaUsuarios(); // Actualizo el grid
+                    Response.Redirect("ListaUsuarios.aspx", false); // Para confirmar que ya no tiene permisos de admin
+                    Context.ApplicationInstance.CompleteRequest(); // Fuerza una redirección fuera UpdatePanel para refrescar el estado admin
+                }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", Seguridad.manejoError("ListaUsuarios_btnConfirmaAdmin_Click", ex));
+                Response.Redirect("Error.aspx", false);
             }
         }
 
         protected void btnCancelarAdmin_Click(object sender, EventArgs e)
         {
-            CambioAdmin = false; // Vuelvo a ocultar los botones
-            ViewState["idUsuarioACambiar"] = null; // Vuelvo el ViewState a null
-            cargarListaUsuarios(); // Actualizo el grid
+            try
+            {
+                CambioAdmin = false; // Vuelvo a ocultar los botones
+                ViewState["idUsuarioACambiar"] = null; // Vuelvo el ViewState a null
+                cargarListaUsuarios(); // Actualizo el grid
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", Seguridad.manejoError("ListaUsuarios_btnCancelarAdmin_Click", ex));
+                Response.Redirect("Error.aspx", false);
+            }
         }
 
         private void cargarListaUsuarios()
@@ -99,8 +123,16 @@ namespace catalogo_web
 
         protected void dgvListaUsuarios_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            dgvListaUsuarios.PageIndex = e.NewPageIndex;
-            cargarListaUsuarios();
+            try
+            {
+                dgvListaUsuarios.PageIndex = e.NewPageIndex;
+                cargarListaUsuarios();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", Seguridad.manejoError("ListaUsuarios_dgvListaUsuarios_PageIndexChanging", ex));
+                Response.Redirect("Error.aspx", false);
+            }
         }
 
     }

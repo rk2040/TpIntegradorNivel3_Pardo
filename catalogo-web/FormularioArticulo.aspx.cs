@@ -15,20 +15,19 @@ namespace catalogo_web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Seguridad.esAdmin(Session["usuario"]))
-            {
-                Session.Add("Error", "Necesita permisos de Admin para acceder a esta sección.");
-                Response.Redirect("Error.aspx");
-                return;
-            }
-
-
-            txtId.Enabled = false;
-            ConfirmaEliminacion = false;
-            btnEliminar.Enabled = false;
-
             try
             {
+                if (!Seguridad.esAdmin(Session["usuario"]))
+                {
+                    Session.Add("Error", "Necesita permisos de Admin para acceder a esta sección.");
+                    Response.Redirect("Error.aspx");
+                    return;
+                }
+
+                txtId.Enabled = false;
+                ConfirmaEliminacion = false;
+                btnEliminar.Enabled = false;
+
                 // Carga inicial de la page Formulario
                 if (!IsPostBack)
                 {
@@ -62,32 +61,38 @@ namespace catalogo_web
                     if(!int.TryParse(id, out idArticulo)) // Intento de casteo para el int, sino puede, Exception
                         throw new Exception("El ID del articulo no es valido."); 
                     List<Articulo> lista = negocio.listarConSP(idArticulo);
-                    Articulo seleccionado = lista[0]; // devuelve una lista con un unico elemento, el del id
 
-                    // Guarto el Articulo en Session
-                    Session.Add("articuloSeleccionado", seleccionado);
+                    if(lista != null && lista.Count > 0) // Valido que el Art exista en la BD
+                    {
+                        Articulo seleccionado = lista[0]; // devuelve una lista con un unico elemento, el del id
 
-                    // Precargo los datos en el formulado del artSeleccionado
-                    txtId.Text = id;
-                    txtCodigo.Text = seleccionado.Codigo;
-                    txtNombre.Text = seleccionado.Nombre;
-                    txtDescripcion.Text = seleccionado.Descripcion;
+                        // Guarto el Articulo en Session
+                        Session.Add("articuloSeleccionado", seleccionado);
 
-                    ddlMarca.SelectedValue = seleccionado.MarcaTipo.Id.ToString();
-                    ddlCategoria.SelectedValue = seleccionado.CategoriaTipo.Id.ToString();
+                        // Precargo los datos en el formulado del artSeleccionado
+                        txtId.Text = id;
+                        txtCodigo.Text = seleccionado.Codigo;
+                        txtNombre.Text = seleccionado.Nombre;
+                        txtDescripcion.Text = seleccionado.Descripcion;
 
-                    txtPrecio.Text = seleccionado.Precio.ToString();
-                    txtUrlImagen.Text = seleccionado.ImagenUrl;
+                        ddlMarca.SelectedValue = seleccionado.MarcaTipo.Id.ToString();
+                        ddlCategoria.SelectedValue = seleccionado.CategoriaTipo.Id.ToString();
 
-                    // Crear un metodo para reemplazar esta llamada
-                    txtUrlImagen_TextChanged(sender, e); //Forzamos la llamada a la funcion para que cargue la img
+                        txtPrecio.Text = seleccionado.Precio.ToString();
+                        txtUrlImagen.Text = seleccionado.ImagenUrl;
+
+                        // Crear un metodo para reemplazar esta llamada
+                        txtUrlImagen_TextChanged(sender, e); //Forzamos la llamada a la funcion para que cargue la img
+                    }
+                    else // Si el Art no existe en la BD, mando una Exception controlada
+                        throw new Exception("El artículo que intenta modificar no existe.");
 
                 }
             }
             catch (Exception ex)
             {
 
-                Session.Add("Error", Seguridad.manejoError(ex));
+                Session.Add("Error", Seguridad.manejoError("FormularioArticulo_Page_Load",ex));
                 Response.Redirect("Error.aspx", false);
             }
         }
@@ -114,6 +119,11 @@ namespace catalogo_web
                 nuevo.CategoriaTipo.Id = int.Parse(ddlCategoria.SelectedValue);
 
                 nuevo.ImagenUrl = txtUrlImagen.Text;
+
+                decimal precioCasteado = 0;
+                if (!decimal.TryParse(txtPrecio.Text, out precioCasteado)) // Valido si el precio es valido, si no lo es, mando una Exception controlada
+                    throw new Exception("El formato del precio ingresado no es valido.");
+
                 nuevo.Precio = decimal.Parse(txtPrecio.Text);
 
                 if (Request.QueryString["id"] != null) // Si trae un id, es porque tiene un Art para modificar.
@@ -129,8 +139,8 @@ namespace catalogo_web
             catch (Exception ex)
             {
 
-                Session.Add("Error", ex.ToString());
-                Response.Redirect("Error.aspx");
+                Session.Add("Error", Seguridad.manejoError("FormularioArticulo_btnAceptar_Click", ex));
+                Response.Redirect("Error.aspx", false);
             }
         }
 
@@ -159,8 +169,8 @@ namespace catalogo_web
             catch (Exception ex)
             {
 
-                Session.Add("Error", ex.ToString());
-                Response.Redirect("Error.aspx");
+                Session.Add("Error", Seguridad.manejoError("FormularioArticulo_btnConfirmaEliminar_Click", ex));
+                Response.Redirect("Error.aspx", false);
             }
         }
 

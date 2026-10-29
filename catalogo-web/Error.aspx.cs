@@ -12,6 +12,8 @@ namespace catalogo_web
         protected void Page_Load(object sender, EventArgs e)
         {
             lblError.Text = Session["Error"] != null ? Session["Error"].ToString() : "Ocurrio un error inesperado.";
+
+            Session["Error"] = null; // Limpia la variable de la Session para proximos errores
         }
     }
 }

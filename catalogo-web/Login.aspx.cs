@@ -14,10 +14,18 @@ namespace catalogo_web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Seguridad.sesionActiva(Session["usuario"]))
+            try
             {
-                Response.Redirect("Default.aspx", false);
-                return;
+                if (Seguridad.sesionActiva(Session["usuario"]))
+                {
+                    Response.Redirect("Default.aspx", false);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", Seguridad.manejoError("Login_Page_Load", ex));
+                Response.Redirect("Error.aspx", false);
             }
         }
 
@@ -48,7 +56,7 @@ namespace catalogo_web
             catch (Exception ex)
             {
                 //Session.Add("Error", ex.ToString());
-                Session.Add("Error", Seguridad.manejoError(ex));
+                Session.Add("Error", Seguridad.manejoError("Login_btnIngresar_Click", ex));
                 Response.Redirect("Error.aspx", false);
             }
         }
