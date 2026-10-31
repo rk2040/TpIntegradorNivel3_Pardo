@@ -59,7 +59,7 @@ namespace catalogo_web
             try
             {
                 string id = dgvArticulos.SelectedDataKey.Value.ToString();
-                Response.Redirect("FormularioArticulo.aspx?id=" + id);
+                Response.Redirect("FormularioArticulo.aspx?id=" + id, false);
             }
             catch (Exception ex)
             {

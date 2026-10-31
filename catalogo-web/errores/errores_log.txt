@@ -1,2 +1,301 @@
 [27/10/2026 20:55:25] ERROR EN enviarEmail: Intento de dividir por cero.
 [27/10/2026 21:08:32] ERROR EN enviarEmail: Intento de dividir por cero.
+[29/10/2026 22:52:24] ERROR EN enviarEmail: System.Net.Mail.SmtpException: Error al enviar correo. ---> System.IO.IOException: No se puede escribir datos de en la conexión de transporte: net_io_connectionclosed.
+   en System.Net.Mail.SmtpReplyReaderFactory.ProcessRead(Byte[] buffer, Int32 offset, Int32 read, Boolean readLine)
+   en System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   en System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   en System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   en System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   en System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   en negocio.EmailService.enviarEmail() en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\EmailService.cs:línea 42
+[29/10/2026 22:52:24] ERROR EN Registro_btnRegistrarse_Click: System.Net.Mail.SmtpException: Error al enviar correo. ---> System.IO.IOException: No se puede escribir datos de en la conexión de transporte: net_io_connectionclosed.
+   en System.Net.Mail.SmtpReplyReaderFactory.ProcessRead(Byte[] buffer, Int32 offset, Int32 read, Boolean readLine)
+   en System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   en System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   en System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   en System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   en System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   en negocio.EmailService.enviarEmail() en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\EmailService.cs:línea 49
+   en catalogo_web.Registro.btnRegistrarse_Click(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\Registro.aspx.cs:línea 56
+[29/10/2026 22:55:22] ERROR EN enviarEmail: System.Net.Mail.SmtpException: Error al enviar correo. ---> System.IO.IOException: No se puede escribir datos de en la conexión de transporte: net_io_connectionclosed.
+   en System.Net.Mail.SmtpReplyReaderFactory.ProcessRead(Byte[] buffer, Int32 offset, Int32 read, Boolean readLine)
+   en System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   en System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   en System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   en System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   en System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   en negocio.EmailService.enviarEmail() en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\EmailService.cs:línea 41
+[29/10/2026 22:55:22] ERROR EN Registro_btnRegistrarse_Click: System.Net.Mail.SmtpException: Error al enviar correo. ---> System.IO.IOException: No se puede escribir datos de en la conexión de transporte: net_io_connectionclosed.
+   en System.Net.Mail.SmtpReplyReaderFactory.ProcessRead(Byte[] buffer, Int32 offset, Int32 read, Boolean readLine)
+   en System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   en System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   en System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   en System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   en System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   en negocio.EmailService.enviarEmail() en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\EmailService.cs:línea 48
+   en catalogo_web.Registro.btnRegistrarse_Click(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\Registro.aspx.cs:línea 56
+[29/10/2026 22:57:43] ERROR EN enviarEmail: System.Net.Mail.SmtpException: Error al enviar correo. ---> System.IO.IOException: No se puede escribir datos de en la conexión de transporte: net_io_connectionclosed.
+   en System.Net.Mail.SmtpReplyReaderFactory.ProcessRead(Byte[] buffer, Int32 offset, Int32 read, Boolean readLine)
+   en System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   en System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   en System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   en System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   en System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   en negocio.EmailService.enviarEmail() en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\EmailService.cs:línea 41
+[29/10/2026 22:57:43] ERROR EN Registro_btnRegistrarse_Click: System.Net.Mail.SmtpException: Error al enviar correo. ---> System.IO.IOException: No se puede escribir datos de en la conexión de transporte: net_io_connectionclosed.
+   en System.Net.Mail.SmtpReplyReaderFactory.ProcessRead(Byte[] buffer, Int32 offset, Int32 read, Boolean readLine)
+   en System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   en System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   en System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   en System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   en System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   en negocio.EmailService.enviarEmail() en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\EmailService.cs:línea 48
+   en catalogo_web.Registro.btnRegistrarse_Click(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\Registro.aspx.cs:línea 56
+[29/10/2026 22:59:13] ERROR EN enviarEmail: System.Net.Mail.SmtpException: Error al enviar correo. ---> System.IO.IOException: No se puede escribir datos de en la conexión de transporte: net_io_connectionclosed.
+   en System.Net.Mail.SmtpReplyReaderFactory.ProcessRead(Byte[] buffer, Int32 offset, Int32 read, Boolean readLine)
+   en System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   en System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   en System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   en System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   en System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   en negocio.EmailService.enviarEmail() en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\EmailService.cs:línea 42
+[29/10/2026 22:59:13] ERROR EN Registro_btnRegistrarse_Click: System.Net.Mail.SmtpException: Error al enviar correo. ---> System.IO.IOException: No se puede escribir datos de en la conexión de transporte: net_io_connectionclosed.
+   en System.Net.Mail.SmtpReplyReaderFactory.ProcessRead(Byte[] buffer, Int32 offset, Int32 read, Boolean readLine)
+   en System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   en System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   en System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   en System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   en System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   en negocio.EmailService.enviarEmail() en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\EmailService.cs:línea 49
+   en catalogo_web.Registro.btnRegistrarse_Click(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\Registro.aspx.cs:línea 56
+[29/10/2026 23:01:52] ERROR EN enviarEmail: System.Net.Mail.SmtpException: Error al enviar correo. ---> System.IO.IOException: No se puede escribir datos de en la conexión de transporte: net_io_connectionclosed.
+   en System.Net.Mail.SmtpReplyReaderFactory.ProcessRead(Byte[] buffer, Int32 offset, Int32 read, Boolean readLine)
+   en System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   en System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   en System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   en System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   en System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   en negocio.EmailService.enviarEmail() en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\EmailService.cs:línea 45
+[29/10/2026 23:01:52] ERROR EN Registro_btnRegistrarse_Click: System.Net.Mail.SmtpException: Error al enviar correo. ---> System.IO.IOException: No se puede escribir datos de en la conexión de transporte: net_io_connectionclosed.
+   en System.Net.Mail.SmtpReplyReaderFactory.ProcessRead(Byte[] buffer, Int32 offset, Int32 read, Boolean readLine)
+   en System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   en System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   en System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   en System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   en System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   en negocio.EmailService.enviarEmail() en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\EmailService.cs:línea 52
+   en catalogo_web.Registro.btnRegistrarse_Click(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\Registro.aspx.cs:línea 56
+[30/10/2026 19:50:52] ERROR EN ArticulosLista_dgvArticulos_SelectedIndexChange: System.Threading.ThreadAbortException: Subproceso anulado.
+   en System.Threading.Thread.AbortInternal()
+   en System.Threading.Thread.Abort(Object stateInfo)
+   en System.Web.HttpResponse.AbortCurrentThread()
+   en System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   en catalogo_web.ArticulosLista.dgvArticulos_SelectedIndexChanged(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\ArticulosLista.aspx.cs:línea 62
+[30/10/2026 19:50:59] ERROR EN ArticulosLista_dgvArticulos_SelectedIndexChange: System.Threading.ThreadAbortException: Subproceso anulado.
+   en System.Threading.Thread.AbortInternal()
+   en System.Threading.Thread.Abort(Object stateInfo)
+   en System.Web.HttpResponse.AbortCurrentThread()
+   en System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   en catalogo_web.ArticulosLista.dgvArticulos_SelectedIndexChanged(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\ArticulosLista.aspx.cs:línea 62
+[30/10/2026 19:51:12] ERROR EN ArticulosLista_dgvArticulos_SelectedIndexChange: System.Threading.ThreadAbortException: Subproceso anulado.
+   en System.Threading.Thread.AbortInternal()
+   en System.Threading.Thread.Abort(Object stateInfo)
+   en System.Web.HttpResponse.AbortCurrentThread()
+   en System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   en catalogo_web.ArticulosLista.dgvArticulos_SelectedIndexChanged(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\ArticulosLista.aspx.cs:línea 62
+[30/10/2026 19:51:35] ERROR EN ArticulosLista_dgvArticulos_SelectedIndexChange: System.Threading.ThreadAbortException: Subproceso anulado.
+   en System.Threading.Thread.AbortInternal()
+   en System.Threading.Thread.Abort(Object stateInfo)
+   en System.Web.HttpResponse.AbortCurrentThread()
+   en System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   en catalogo_web.ArticulosLista.dgvArticulos_SelectedIndexChanged(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\ArticulosLista.aspx.cs:línea 62
+[30/10/2026 19:53:35] ERROR EN ArticulosLista_dgvArticulos_SelectedIndexChange: System.Threading.ThreadAbortException: Subproceso anulado.
+   en System.Threading.Thread.AbortInternal()
+   en System.Threading.Thread.Abort(Object stateInfo)
+   en System.Web.HttpResponse.AbortCurrentThread()
+   en System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   en catalogo_web.ArticulosLista.dgvArticulos_SelectedIndexChanged(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\ArticulosLista.aspx.cs:línea 62
+[30/10/2026 20:52:54] ERROR EN Default_Page_Load: System.InvalidOperationException: Error de instancia.
+   en System.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, Boolean encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean withFailover, Boolean isFirstTransparentAttempt, SqlAuthenticationMethod authType, Boolean disableTnir, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   en System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover, Boolean isFirstTransparentAttempt, Boolean disableTnir)
+   en System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   en System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   en System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   en System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en negocio.AccesoDatos.ejecutarLectura() en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\AccesoDatos.cs:línea 45
+   en negocio.ArticuloNegocio.listarConSP(Int32 id) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\ArticuloNegocio.cs:línea 27
+   en catalogo_web.Default.Page_Load(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\Default.aspx.cs:línea 20
+[30/10/2026 20:52:57] ERROR EN Default_Page_Load: System.InvalidOperationException: Error de instancia.
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en negocio.AccesoDatos.ejecutarLectura() en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\AccesoDatos.cs:línea 45
+   en negocio.ArticuloNegocio.listarConSP(Int32 id) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\ArticuloNegocio.cs:línea 27
+   en catalogo_web.Default.Page_Load(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\Default.aspx.cs:línea 20
+[30/10/2026 20:52:58] ERROR EN Default_Page_Load: System.InvalidOperationException: Error de instancia.
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en negocio.AccesoDatos.ejecutarLectura() en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\AccesoDatos.cs:línea 45
+   en negocio.ArticuloNegocio.listarConSP(Int32 id) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\ArticuloNegocio.cs:línea 27
+   en catalogo_web.Default.Page_Load(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\Default.aspx.cs:línea 20
+[30/10/2026 20:53:00] ERROR EN ArticulosLista_Page_Load: System.InvalidOperationException: Error de instancia.
+   en System.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, Boolean encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean withFailover, Boolean isFirstTransparentAttempt, SqlAuthenticationMethod authType, Boolean disableTnir, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   en System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover, Boolean isFirstTransparentAttempt, Boolean disableTnir)
+   en System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   en System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   en System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   en System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en negocio.AccesoDatos.ejecutarLectura() en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\AccesoDatos.cs:línea 45
+   en negocio.ArticuloNegocio.listarConSP(Int32 id) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\ArticuloNegocio.cs:línea 27
+   en catalogo_web.ArticulosLista.Page_Load(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\ArticulosLista.aspx.cs:línea 22
+[30/10/2026 20:53:01] ERROR EN Default_Page_Load: System.InvalidOperationException: Error de instancia.
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en negocio.AccesoDatos.ejecutarLectura() en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\AccesoDatos.cs:línea 45
+   en negocio.ArticuloNegocio.listarConSP(Int32 id) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\ArticuloNegocio.cs:línea 27
+   en catalogo_web.Default.Page_Load(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\Default.aspx.cs:línea 20
+[30/10/2026 20:53:02] ERROR EN Default_Page_Load: System.InvalidOperationException: Error de instancia.
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en negocio.AccesoDatos.ejecutarLectura() en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\AccesoDatos.cs:línea 45
+   en negocio.ArticuloNegocio.listarConSP(Int32 id) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\ArticuloNegocio.cs:línea 27
+   en catalogo_web.Default.Page_Load(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\Default.aspx.cs:línea 20
+[30/10/2026 20:53:03] ERROR EN Default_Page_Load: System.InvalidOperationException: Error de instancia.
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en negocio.AccesoDatos.ejecutarLectura() en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\AccesoDatos.cs:línea 45
+   en negocio.ArticuloNegocio.listarConSP(Int32 id) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\ArticuloNegocio.cs:línea 27
+   en catalogo_web.Default.Page_Load(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\Default.aspx.cs:línea 20
+[30/10/2026 20:53:03] ERROR EN Default_Page_Load: System.InvalidOperationException: Error de instancia.
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en negocio.AccesoDatos.ejecutarLectura() en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\AccesoDatos.cs:línea 45
+   en negocio.ArticuloNegocio.listarConSP(Int32 id) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\ArticuloNegocio.cs:línea 27
+   en catalogo_web.Default.Page_Load(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\Default.aspx.cs:línea 20
+[30/10/2026 20:53:03] ERROR EN Default_Page_Load: System.InvalidOperationException: Error de instancia.
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en negocio.AccesoDatos.ejecutarLectura() en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\AccesoDatos.cs:línea 45
+   en negocio.ArticuloNegocio.listarConSP(Int32 id) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\ArticuloNegocio.cs:línea 27
+   en catalogo_web.Default.Page_Load(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\Default.aspx.cs:línea 20
+[30/10/2026 20:53:03] ERROR EN Default_Page_Load: System.InvalidOperationException: Error de instancia.
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en negocio.AccesoDatos.ejecutarLectura() en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\AccesoDatos.cs:línea 45
+   en negocio.ArticuloNegocio.listarConSP(Int32 id) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\ArticuloNegocio.cs:línea 27
+   en catalogo_web.Default.Page_Load(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\Default.aspx.cs:línea 20
+[30/10/2026 20:53:23] ERROR EN Login_btnIngresar_Click: System.InvalidOperationException: Error de instancia.
+   en System.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, Boolean encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean withFailover, Boolean isFirstTransparentAttempt, SqlAuthenticationMethod authType, Boolean disableTnir, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   en System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover, Boolean isFirstTransparentAttempt, Boolean disableTnir)
+   en System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   en System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   en System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   en System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en negocio.AccesoDatos.ejecutarLectura() en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\AccesoDatos.cs:línea 45
+   en negocio.UsuarioNegocio.Login(Usuario usuario) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\negocio\UsuarioNegocio.cs:línea 46
+   en catalogo_web.Login.btnIngresar_Click(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\Login.aspx.cs:línea 45
+[30/10/2026 21:11:04] ERROR EN Master_btnSalir_Click: System.Threading.ThreadAbortException: Subproceso anulado.
+   en System.Threading.Thread.AbortInternal()
+   en System.Threading.Thread.Abort(Object stateInfo)
+   en System.Web.HttpResponse.AbortCurrentThread()
+   en System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   en catalogo_web.Master.btnSalir_Click(Object sender, EventArgs e) en C:\Users\Rober i7\Documents\Curso C# Nivel 3\TpIntegradorNivel3_Pardo\catalogo-web\Master.Master.cs:línea 46

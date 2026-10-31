@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace negocio
 {
@@ -16,10 +17,14 @@ namespace negocio
         public EmailService()
         {
             server = new SmtpClient();
-            server.Credentials = new NetworkCredential("pruebasconcsharp@gmail.com", "aqwdbsmdtavbubgg");
+            server.Credentials = new NetworkCredential("pruebasconcsharp@gmail.com", ConfigurationManager.AppSettings["EmailPassword"]);
+            //server.Credentials = new NetworkCredential("pruebasconcsharp@gmail.com", "xxxxxxxxxxxxxx");
             server.EnableSsl = true;
             server.Port = 587;
             server.Host = "smtp.gmail.com";
+
+            string usuario = ConfigurationManager.AppSettings["EmailPassword"];
+            System.Diagnostics.Debug.WriteLine("Contraseña cargada: " + !string.IsNullOrEmpty(usuario));
         }
 
         public void armarCorreo(string emailDestino, string asunto, string cuerpo)

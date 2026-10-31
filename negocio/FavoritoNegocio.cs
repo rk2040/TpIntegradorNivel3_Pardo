@@ -58,9 +58,6 @@ namespace negocio
 
             try
             {
-                List<Articulo> listaAux = new List<Articulo>();
-                listaAux = listar(idUsuario);
-
                 if (!esFavorito(idUsuario, idArticulo))
                 {
                     datos.setearConsulta("Insert into FAVORITOS (IdUser, IdArticulo) values (@idUsuario, @idArticulo)");
@@ -69,10 +66,9 @@ namespace negocio
                     datos.ejecutarAccion();
                 }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            
+            // Sin catch
+
             finally
             {
                 datos.cerrarConexion();
@@ -80,8 +76,7 @@ namespace negocio
         }
 
         public bool esFavorito(int idUsuario, int idArticulo)
-        {
-            AccesoDatos datos = new AccesoDatos();
+        {   // try catch lo maneja el metodo que lo llama
             List<Articulo> listaAux = new List<Articulo>();
             listaAux = listar(idUsuario);
 
@@ -89,22 +84,14 @@ namespace negocio
         }
 
         public void eliminarFavorito(int idUsuario, int idArticulo)
-        {
+        {   // try catch lo maneja el metodo que lo llama
             AccesoDatos datos = new AccesoDatos();
 
-            try
-            {
-                datos.setearConsulta("DELETE FROM FAVORITOS WHERE idUser = @idUsuario AND idArticulo = @idArticulo");
-                datos.setearParametros("@idUsuario", idUsuario);
-                datos.setearParametros("@idArticulo", idArticulo);
-                datos.ejecutarAccion();
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally { datos.cerrarConexion(); }
+            datos.setearConsulta("DELETE FROM FAVORITOS WHERE idUser = @idUsuario AND idArticulo = @idArticulo");
+            datos.setearParametros("@idUsuario", idUsuario);
+            datos.setearParametros("@idArticulo", idArticulo);
+            datos.ejecutarAccion();
+            
         }
     }
 }

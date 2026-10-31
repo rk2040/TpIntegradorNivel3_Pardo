@@ -113,11 +113,9 @@ namespace negocio
                 }
                 return lista;
             }
-            catch (Exception ex)
-            {
+            
+            // Sin catch
 
-                throw ex;
-            }
             finally { datos.cerrarConexion(); }
         }
 
@@ -131,10 +129,9 @@ namespace negocio
                 datos.setearParametros("@Id", idUsuario);
                 datos.ejecutarAccion();
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+
+            // Sin catch
+
             finally
             {
                 datos.cerrarConexion();

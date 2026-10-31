@@ -79,6 +79,7 @@
     <Content Include="MiPerfil.aspx" />
     <Content Include="Registro.aspx" />
     <Content Include="Web.config" />
+    <None Include="privateSettings.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArticulosLista.aspx.cs">
