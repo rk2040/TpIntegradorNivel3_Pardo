@@ -43,7 +43,7 @@ namespace catalogo_web
             try
             {
                 Session.Clear();
-                Response.Redirect("Login.aspx");
+                Response.Redirect("Login.aspx", false);
             }
             catch (Exception ex)
             {

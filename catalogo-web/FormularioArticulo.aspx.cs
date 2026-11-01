@@ -20,7 +20,7 @@ namespace catalogo_web
                 if (!Seguridad.esAdmin(Session["usuario"]))
                 {
                     Session.Add("Error", "Necesita permisos de Admin para acceder a esta sección.");
-                    Response.Redirect("Error.aspx");
+                    Response.Redirect("Error.aspx", false);
                     return;
                 }
 

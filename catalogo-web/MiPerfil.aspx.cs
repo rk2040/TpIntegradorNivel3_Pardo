@@ -48,9 +48,6 @@ namespace catalogo_web
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            //Page.Validate();
-            //if (!Page.IsValid)
-            //    return;
             try
             {
                 UsuarioNegocio negocio = new UsuarioNegocio();
@@ -59,8 +56,17 @@ namespace catalogo_web
                 if (txtImagenPerfil.PostedFile != null && !string.IsNullOrEmpty(txtImagenPerfil.PostedFile.FileName))
                 {
                     string ruta = Server.MapPath("./Images/");
-                    txtImagenPerfil.PostedFile.SaveAs(ruta + "perfil-" + usuario.Id + ".jpg");
-                    usuario.ImagenPerfil = "perfil-" + usuario.Id + ".jpg";
+
+                    if (!System.IO.Directory.Exists(ruta)) // Si no exixte la carpeta Images la crea
+                    {
+                        System.IO.Directory.CreateDirectory(ruta);
+                    }
+
+                    string nombreArchivo = "perfil-" + usuario.Id + ".jpg";
+                    string rutaCompleta = System.IO.Path.Combine(ruta, nombreArchivo); // une la ruta completa
+
+                    txtImagenPerfil.PostedFile.SaveAs(rutaCompleta);
+                    usuario.ImagenPerfil = nombreArchivo;
                 }
 
                 // Guardo los datos del usuario
